@@ -1,0 +1,3 @@
+GRANT     ALL PRIVILEGES ON SCHEMA public TO snap2card;
+
+GRANT     ALL PRIVILEGES ON TABLE account TO snap2card;

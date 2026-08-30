@@ -1,7 +1,7 @@
 CREATE    TABLE SESSION (
           session_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-          login_time TIME DEFAULT NOW() NOT NULL                 ,
-          logout_time TIME DEFAULT NULL                          ,
+          login_time TIMESTAMP DEFAULT NOW() NOT NULL                 ,
+          logout_time TIMESTAMP DEFAULT NULL                          ,
           owner_id INT NOT NULL                                  ,
           FOREIGN KEY (owner_id) REFERENCES ACCOUNT (account_id)
           );

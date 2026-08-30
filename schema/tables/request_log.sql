@@ -5,7 +5,7 @@ CREATE    TABLE REQUEST_LOG (
           body_text TEXT NOT NULL                                ,
           reponse_header TEXT NOT NULL                           ,
           reponse_body TEXT NOT NULL                             ,
-          date_created TIME DEFAULT NOW()
+          date_created TIMESTAMP DEFAULT NOW()
           );
 
 -- DROP      TABLE request_log;

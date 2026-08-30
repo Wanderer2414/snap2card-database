@@ -34,3 +34,5 @@
 ./schema/functions/retrieve/account_retrieve.sql
 ./schema/functions/retrieve/card_list.sql
 ./schema/procedures/update/account_logout.sql
+
+./schema/index/common.sql

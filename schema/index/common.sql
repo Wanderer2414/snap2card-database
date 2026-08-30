@@ -1,0 +1,2 @@
+CREATE    INDEX IDX_SESSION_STATUS ON SESSION (owner_id)
+WHERE     final_status = 'ACTIVE';

@@ -11,6 +11,14 @@ DECLARE
     v_id INT   ;
     v_token INT;
 BEGIN
+    IF p_email IS NULL THEN
+        RAISE EXCEPTION '50001: email must not be null';
+    END IF;
+
+    IF p_password IS NULL THEN
+        RAISE EXCEPTION '50001: password must not be null';
+    END IF;
+
     SELECT account_id
     INTO v_id
     FROM ACCOUNT

@@ -1,0 +1,10 @@
+CREATE
+OR        REPLACE FUNCTION FN_SESSION_CHECK (p_id TYPE_ID) RETURNS BOOLEAN AS $$ BEGIN
+
+    UPDATE SESSION
+    SET logout_time = NOW() + INTERVAL '15m'
+    WHERE final_status = 'ACTIVE' AND session_id = FN_ID_SESSION(p_id);
+
+    RETURN FOUND;
+END
+$$ LANGUAGE plpgsql;

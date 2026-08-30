@@ -1,0 +1,1 @@
+SELECT    FN_ACCOUNT_INSERT ('tester', 'tester@gmail.com', '1234');

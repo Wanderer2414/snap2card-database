@@ -1,9 +1,13 @@
 ./schema/functions/support.sql
+./schema/extensions/extensions.sql
 
 ./schema/definitions/name.sql
+./schema/definitions/id.sql
 ./schema/definitions/quiz.sql
+./schema/definitions/email.sql
 ./schema/definitions/password.sql
 ./schema/definitions/level.sql
+./schema/definitions/status.sql
 
 ./schema/tables/account.sql
 ./schema/tables/component.sql
@@ -16,4 +20,9 @@
 
 ./schema/grant/account.sql
 
+./schema/functions/support/id.sql
+
 ./schema/functions/request_log_insert.sql
+./schema/functions/account_insert.sql
+./schema/functions/account_login.sql
+./schema/functions/session_check.sql

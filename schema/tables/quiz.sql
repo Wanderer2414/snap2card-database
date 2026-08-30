@@ -2,7 +2,7 @@ CREATE    TABLE QUIZ (
           quiz_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
           quiz_level TYPE_LEVEL_QUIZ NOT NULL                 ,
           quiz_type TYPE_QUIZ_TYPE NOT NULL                   ,
-          date_created TIMESTAMP DEFAULT NOW() NOT NULL
+          date_created TIMESTAMPTZ DEFAULT NOW() NOT NULL
           );
 
 -- DROP      TABLE QUIZ CASCADE;

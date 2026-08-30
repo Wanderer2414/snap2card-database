@@ -3,7 +3,7 @@ CREATE    TABLE CARD (
           frontside_id INT NOT NULL                                            ,
           backside_id INT NOT NULL                                             ,
           creator_id INT NOT NULL                                              ,
-          date_created TIMESTAMP DEFAULT NOW() NOT NULL                        ,
+          date_created TIMESTAMPTZ DEFAULT NOW() NOT NULL                       ,
           FOREIGN KEY (frontside_id) REFERENCES COMPONENT (component_id)       ,
           FOREIGN KEY (backside_id) REFERENCES COMPONENT (component_id)        ,
           FOREIGN KEY (creator_id) REFERENCES ACCOUNT (account_id)             ,

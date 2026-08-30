@@ -1,8 +1,8 @@
 -- CREATE    TABLE SESSION (
---           session_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---           login_time TIMESTAMP DEFAULT NOW() NOT NULL            ,
---           logout_time TIMESTAMP DEFAULT (NOW() + INTERVAL '15m') ,
---           owner_id INT NOT NULL                                  ,
+--           session_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY ,
+--           login_time TIMESTAMPTZ DEFAULT NOW() NOT NULL            ,
+--           logout_time TIMESTAMPTZ DEFAULT (NOW() + INTERVAL '15m') ,
+--           owner_id INT NOT NULL                                   ,
 --           FOREIGN KEY (owner_id) REFERENCES ACCOUNT (account_id)
 --           );
 CREATE

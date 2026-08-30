@@ -4,7 +4,7 @@
 --           account_name TYPE_NAME_ACCOUNT NOT NULL                ,
 --           account_phone TYPE_PHONE NOT NULL                      ,
 --           account_password TYPE_PASSWORD_CRYPTED NOT NULL        ,
---           date_created TIMESTAMP DEFAULT NOW() NOT NULL
+--           date_created TIMESTAMPTZ DEFAULT NOW() NOT NULL
 --           );
 CREATE
 OR        REPLACE FUNCTION FN_ACCOUNT_INSERT (

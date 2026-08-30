@@ -21,6 +21,7 @@ psql -U snap2card -d snap2card -h localhost -tc "
 "
 
 while IFS= read -r file; do
+    
     # Skip empty lines and comments
     [[ -z "$file" || "$file" =~ ^[[:space:]]*# ]] && continue
 

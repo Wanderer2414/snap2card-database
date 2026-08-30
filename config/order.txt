@@ -21,12 +21,16 @@
 ./schema/tables/exam_log.sql
 ./schema/tables/session.sql
 ./schema/tables/request_log.sql
+./schema/tables/account_card_have.sql
 
 ./schema/grant/account.sql
 
 ./schema/functions/insert/request_log_insert.sql
 ./schema/functions/insert/account_insert.sql
 ./schema/functions/insert/account_login.sql
+./schema/functions/insert/component_insert.sql
+./schema/functions/insert/card_insert.sql
 ./schema/functions/update/session_check.sql
 ./schema/functions/retrieve/account_retrieve.sql
+./schema/functions/retrieve/card_list.sql
 ./schema/procedures/update/account_logout.sql

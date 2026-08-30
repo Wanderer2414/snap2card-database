@@ -6,3 +6,10 @@
 --           p_password TYPE_PASSWORD
 --           ) RETURNS INT AS $$ 
 SELECT    FN_ACCOUNT_INSERT ('tester', 'tester@gmail.com', 0944444444, '1234');
+
+SELECT    FN_ACCOUNT_INSERT (
+          'tester2'          ,
+          'tester2@gmail.com',
+          0955555555         ,
+          '1234'
+          );

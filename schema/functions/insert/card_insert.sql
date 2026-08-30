@@ -29,9 +29,27 @@ BEGIN
     IF p_frontside = p_backside THEN
         RAISE EXCEPTION '50003: frontside and backside must be different';
     END IF;
-
-    INSERT INTO CARD(frontside_id, backside_id, creator_id) VALUES (p_frontside, p_backside, p_creator)
+    
+    INSERT INTO CARD (frontside_id, backside_id, creator_id)
+    VALUES (p_frontside, p_backside, p_creator)
+    ON CONFLICT (frontside_id, backside_id)
+    DO NOTHING
     RETURNING card_id INTO v_id;
+
+    IF v_id IS NULL THEN
+        SELECT card_id
+        INTO v_id
+        FROM CARD
+        WHERE frontside_id = p_frontside
+          AND backside_id = p_backside;
+    END IF;
+
+    INSERT INTO ACCOUNT_CARD_HAVE (account_id, card_id)
+    VALUES (p_creator, v_id)
+    ON CONFLICT (account_id, card_id) DO NOTHING;
+
     RETURN v_id;
+
+
 END;
 $$ LANGUAGE plpgsql;

@@ -29,3 +29,4 @@
 ./schema/functions/insert/account_login.sql
 ./schema/functions/update/session_check.sql
 ./schema/functions/retrieve/account_retrieve.sql
+./schema/procedures/update/account_logout.sql

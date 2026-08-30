@@ -8,6 +8,7 @@
 ./schema/definitions/password.sql
 ./schema/definitions/level.sql
 ./schema/definitions/status.sql
+./schema/definitions/phone.sql
 
 ./schema/tables/account.sql
 ./schema/tables/component.sql

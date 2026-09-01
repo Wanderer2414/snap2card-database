@@ -50,3 +50,4 @@
 ./protocols/account_login.sql
 ./protocols/card_list.sql
 ./protocols/card_retrieve.sql
+./protocols/category_list.sql

@@ -1,4 +1,5 @@
 ./schema/functions/support/support.sql
+./schema/functions/support/gmt.sql
 
 ./schema/extensions/extensions.sql
 
@@ -23,6 +24,7 @@
 ./schema/tables/request_log.sql
 ./schema/tables/account_card_have.sql
 ./schema/tables/category.sql
+./schema/tables/account_category_have.sql
 
 ./schema/grant/account.sql
 

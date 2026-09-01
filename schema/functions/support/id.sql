@@ -1,6 +1,21 @@
 CREATE
-OR        REPLACE FUNCTION FN_SESSION_ID (p_id INT) RETURNS TEXT AS $$ 
+OR        REPLACE FUNCTION FN_SESSION_ID (p_id INT) RETURNS TYPE_ID AS $$ 
     SELECT CONCAT('SESS', TO_CHAR(p_id, 'FM00000000000'));
+$$ LANGUAGE SQL IMMUTABLE;
+
+CREATE
+OR        REPLACE FUNCTION FN_CATEGORY_ID (p_id INT) RETURNS TYPE_ID AS $$ 
+    SELECT CONCAT('CATE', TO_CHAR(p_id, 'FM00000000000'));
+$$ LANGUAGE SQL IMMUTABLE;
+
+CREATE
+OR        REPLACE FUNCTION FN_CARD_ID (p_id INT) RETURNS TYPE_ID AS $$ 
+    SELECT CONCAT('CARD', TO_CHAR(p_id, 'FM00000000000'));
+$$ LANGUAGE SQL IMMUTABLE;
+
+CREATE
+OR        REPLACE FUNCTION FN_ACCOUNT_ID (p_id INT) RETURNS TYPE_ID AS $$ 
+    SELECT CONCAT('ACNT', TO_CHAR(p_id, 'FM00000000000'));
 $$ LANGUAGE SQL IMMUTABLE;
 
 CREATE
@@ -15,5 +30,50 @@ BEGIN
     END IF;
 
     RETURN CAST(SUBSTRING(p_session_id FROM 5) AS INT);
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+
+CREATE
+OR        REPLACE FUNCTION FN_ID_CATEGORY (p_category_id TYPE_ID) RETURNS INT AS $$
+BEGIN
+    IF p_category_id IS NULL THEN
+        RAISE EXCEPTION '50001: category id must not be null';
+    END IF;
+
+    IF SUBSTRING(p_category_id, 1, 4) <> 'CATE' THEN
+        RAISE EXCEPTION '50006: invalid category id format';
+    END IF;
+
+    RETURN CAST(SUBSTRING(p_category_id FROM 5) AS INT);
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+
+CREATE
+OR        REPLACE FUNCTION FN_ID_CARD (p_card_id TYPE_ID) RETURNS INT AS $$
+BEGIN
+    IF p_card_id IS NULL THEN
+        RAISE EXCEPTION '50001: card id must not be null';
+    END IF;
+
+    IF SUBSTRING(p_card_id, 1, 4) <> 'CATD' THEN
+        RAISE EXCEPTION '50006: invalid card id format';
+    END IF;
+
+    RETURN CAST(SUBSTRING(p_card_id FROM 5) AS INT);
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+
+CREATE
+OR        REPLACE FUNCTION FN_ID_ACCOUNT (p_account_id TYPE_ID) RETURNS INT AS $$
+BEGIN
+    IF p_account_id IS NULL THEN
+        RAISE EXCEPTION '50001: account id must not be null';
+    END IF;
+
+    IF SUBSTRING(p_account_id, 1, 4) <> 'ACNT' THEN
+        RAISE EXCEPTION '50006: invalid card id format';
+    END IF;
+
+    RETURN CAST(SUBSTRING(p_account_id FROM 5) AS INT);
 END;
 $$ LANGUAGE plpgsql IMMUTABLE;

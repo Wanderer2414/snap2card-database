@@ -1,0 +1,7 @@
+-- CREATE    TABLE ACCOUNT_CATEGORY_HAVE (
+--           account_id INT REFERENCES ACCOUNT (account_id)         ,
+--           category_id INT REFERENCES CATEGORY (category_id)      ,
+--           numOfCard INT NOT NULL CHECK (numOfCard >= 0) DEFAULT 0,
+--           date_created TIMESTAMPTZ DEFAULT NOW() NOT NULL        ,
+--           PRIMARY KEY (account_id, category_id)
+--           );

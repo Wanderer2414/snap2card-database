@@ -1,8 +1,8 @@
 CREATE
-OR        REPLACE FUNCTION CATEGORY_RETRIEVE (p_session_id TYPE_ID) RETURNS TABLE (
-          category_id TYPE_ID             ,
+OR        REPLACE FUNCTION CATEGORY_RETRIEVE (p_session_id TYPE_ID, p_id TYPE_ID) RETURNS TABLE (
           category_name TYPE_NAME_CATEGORY,
           numOfCard INT                   ,
+          card_ids TYPE_ID[]              ,
           YEAR INTEGER                    ,
           MONTH INTEGER                   ,
           DAY INTEGER                     ,
@@ -13,10 +13,9 @@ OR        REPLACE FUNCTION CATEGORY_RETRIEVE (p_session_id TYPE_ID) RETURNS TABL
           ) AS $$
           BEGIN
             RETURN QUERY 
-            SELECT    FN_CATEGORY_ID(C.category_id), C.category_name, CAST(COUNT(DISTINCT CCC.card_id) AS INTEGER), (FN_GET_GMT(MIN(ACH.date_created))).*
-            FROM      CATEGORY C
-            JOIN CATEGORY_CARD_CONTAIN CCC ON CCC.category_id = C.category_id
-            JOIN ACCOUNT_CARD_HAVE ACH ON ACH.card_id = CCC.card_id AND ACH.account_id = FN_SESSION_CHECK(p_session_id)
-            GROUP BY C.category_id, C.category_name;
+            SELECT C.category_name, C.numOfCard, 
+                  (SELECT array_agg(FN_CARD_ID(CID.card_id)) FROM unnest(C.card_ids) as CID(card_id)), 
+                  C.YEAR, C.MONTH, C.DAY, C.HOUR, C.MINUTE, C.SECOND, C.gmt 
+            FROM FN_CATEGORY_RETRIEVE(FN_SESSION_CHECK(p_session_id), FN_ID_CATEGORY(p_id)) C;
           END
           $$ LANGUAGE plpgsql;

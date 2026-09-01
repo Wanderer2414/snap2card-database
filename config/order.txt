@@ -39,6 +39,7 @@
 ./schema/functions/retrieve/card_list.sql
 ./schema/functions/retrieve/card_retrieve.sql
 ./schema/functions/retrieve/category_retrieve.sql
+./schema/functions/retrieve/category_list.sql
 ./schema/functions/retrieve/component_retrieve.sql
 
 ./schema/procedures/insert/categorize.sql
@@ -51,3 +52,4 @@
 ./protocols/card_list.sql
 ./protocols/card_retrieve.sql
 ./protocols/category_list.sql
+./protocols/category_retrieve.sql

@@ -55,7 +55,7 @@ BEGIN
         RAISE EXCEPTION '50001: card id must not be null';
     END IF;
 
-    IF SUBSTRING(p_card_id, 1, 4) <> 'CATD' THEN
+    IF SUBSTRING(p_card_id, 1, 4) <> 'CARD' THEN
         RAISE EXCEPTION '50006: invalid card id format';
     END IF;
 

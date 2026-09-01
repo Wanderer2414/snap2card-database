@@ -1,24 +1,16 @@
 -- CREATE    TABLE SESSION (
---           session_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY ,
+--           session_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY  ,
 --           login_time TIMESTAMPTZ DEFAULT NOW() NOT NULL            ,
 --           logout_time TIMESTAMPTZ DEFAULT (NOW() + INTERVAL '15m') ,
---           owner_id INT NOT NULL                                   ,
+--           owner_id INT NOT NULL                                    ,
 --           FOREIGN KEY (owner_id) REFERENCES ACCOUNT (account_id)
 --           );
 CREATE
-OR        REPLACE FUNCTION FN_ACCOUNT_LOGIN (p_email TYPE_EMAIL, p_password TYPE_PASSWORD) RETURNS TYPE_ID AS $$
+OR        REPLACE FUNCTION FN_ACCOUNT_LOGIN (p_email TYPE_EMAIL, p_password TYPE_PASSWORD) RETURNS INT AS $$
 DECLARE
     v_id INT   ;
     v_token INT;
 BEGIN
-    IF p_email IS NULL THEN
-        RAISE EXCEPTION '50001: email must not be null';
-    END IF;
-
-    IF p_password IS NULL THEN
-        RAISE EXCEPTION '50001: password must not be null';
-    END IF;
-
     SELECT account_id
     INTO v_id
     FROM ACCOUNT
@@ -40,6 +32,6 @@ BEGIN
         RETURNING session_id INTO v_token;
     END IF;
 
-    RETURN FN_SESSION_ID(v_token);
+    RETURN v_token;
 END
 $$ LANGUAGE plpgsql;

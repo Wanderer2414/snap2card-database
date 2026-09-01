@@ -46,3 +46,6 @@
 
 
 ./schema/index/common.sql
+
+./protocols/card_list.sql
+./protocols/card_retrieve.sql

@@ -1,5 +1,5 @@
 CREATE
-OR        REPLACE FUNCTION CATEGORY_LIST (p_session_id TYPE_ID) RETURNS TABLE (
+OR        REPLACE FUNCTION CATEGORY_RETRIEVE (p_session_id TYPE_ID) RETURNS TABLE (
           category_id TYPE_ID             ,
           category_name TYPE_NAME_CATEGORY,
           numOfCard INT                   ,

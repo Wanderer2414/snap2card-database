@@ -2,8 +2,9 @@
 read -sp "Password: " my_pass
 export PGPASSWORD="$my_pass"
 
-find ./test/test1 -type f -name "*.sql" -print0 |
-while IFS= read -r -d '' file; do
+find ./test/test1 -type f -name "*.sql" | sort |
+while IFS= read -r file; do
+    echo $file
     if [[ ! -f "$file" ]]; then
         echo "Error: SQL file not found: $file"
         exit 1

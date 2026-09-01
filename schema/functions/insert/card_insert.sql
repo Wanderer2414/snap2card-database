@@ -32,7 +32,7 @@ BEGIN
     
     INSERT INTO CARD (frontside_id, backside_id, creator_id)
     VALUES (p_frontside, p_backside, p_creator)
-    ON CONFLICT (frontside_id, backside_id)
+    ON CONFLICT
     DO NOTHING
     RETURNING card_id INTO v_id;
 

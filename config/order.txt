@@ -22,6 +22,7 @@
 ./schema/tables/session.sql
 ./schema/tables/request_log.sql
 ./schema/tables/account_card_have.sql
+./schema/tables/category.sql
 
 ./schema/grant/account.sql
 
@@ -30,9 +31,16 @@
 ./schema/functions/insert/account_login.sql
 ./schema/functions/insert/component_insert.sql
 ./schema/functions/insert/card_insert.sql
+./schema/functions/insert/category_insert.sql
 ./schema/functions/update/session_check.sql
 ./schema/functions/retrieve/account_retrieve.sql
 ./schema/functions/retrieve/card_list.sql
+./schema/functions/retrieve/card_retrieve.sql
+./schema/functions/retrieve/category_retrieve.sql
+./schema/functions/retrieve/component_retrieve.sql
+
+./schema/procedures/insert/categorize.sql
 ./schema/procedures/update/account_logout.sql
+
 
 ./schema/index/common.sql

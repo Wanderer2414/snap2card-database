@@ -1,10 +1,15 @@
 CREATE
-OR        REPLACE FUNCTION CARD_LIST (p_session TYPE_ID) RETURNS TABLE (card_id TYPE_ID, component_text TEXT) AS $$
+OR        REPLACE FUNCTION CARD_LIST (p_account_id TYPE_ID) RETURNS TABLE (card_id TYPE_ID, component_text TEXT) AS $$
 BEGIN
+    IF p_account_id IS NULL THEN
+        RAISE EXCEPTION 'account id must not be null' USING ERRCODE = '50001';
+    END IF;
+
+    IF SUBSTRING(p_account_id, 1, 4) <> 'ACNT' THEN
+        RAISE EXCEPTION 'invalid account id format' USING ERRCODE = '50006';
+    END IF;
+
     RETURN QUERY
-    SELECT FN_CARD_ID(A.card_id), C.component_text FROM ACCOUNT_CARD_HAVE A 
-    JOIN CARD CD ON A.card_id = CD.card_id
-    JOIN COMPONENT C ON CD.frontside_id = C.component_id
-    WHERE A.account_id = FN_SESSION_CHECK(p_session);
+    SELECT FN_CARD_ID(C.card_id), C.component_text FROM FN_CARD_LIST(FN_ID_ACCOUNT(p_account_id)) AS C;
 END
 $$ LANGUAGE plpgsql;

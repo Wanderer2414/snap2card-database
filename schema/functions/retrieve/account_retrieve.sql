@@ -20,10 +20,6 @@ OR        REPLACE FUNCTION FN_ACCOUNT_RETRIEVE (p_id INT) RETURNS TABLE (
           gmt CHAR(3)
           ) AS $$
 BEGIN
-    IF p_id IS NULL THEN
-        RAISE EXCEPTION '50001: account id must not be null';
-    END IF;
-
     RETURN QUERY 
     SELECT A.account_email, A.account_name, A.account_phone, (FN_GET_GMT(A.date_created)).* FROM ACCOUNT A WHERE account_id = p_id;
 END;

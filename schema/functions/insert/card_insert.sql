@@ -14,22 +14,6 @@ OR        REPLACE FUNCTION FN_CARD_INSERT (p_frontside INT, p_backside INT, p_cr
 DECLARE 
     v_id INT;
 BEGIN
-    IF p_frontside IS NULL THEN
-        RAISE EXCEPTION '50001: frontside must not be null';
-    END IF;
-
-    IF p_backside IS NULL THEN
-        RAISE EXCEPTION '50001: backside must not be null';
-    END IF;
-
-    IF p_creator IS NULL THEN
-        RAISE EXCEPTION '50001: creator must not be null';
-    END IF;
-
-    IF p_frontside = p_backside THEN
-        RAISE EXCEPTION '50003: frontside and backside must be different';
-    END IF;
-    
     INSERT INTO CARD (frontside_id, backside_id, creator_id)
     VALUES (p_frontside, p_backside, p_creator)
     ON CONFLICT

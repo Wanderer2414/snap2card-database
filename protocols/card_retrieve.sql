@@ -4,11 +4,23 @@ OR        REPLACE FUNCTION CARD_RETRIEVE (p_ids TYPE_ID[]) RETURNS TABLE (
           frontside_text TEXT,
           backside_text TEXT
           ) AS $$
+DECLARE
+    v_ids INT[];
 BEGIN
-    RETURN QUERY 
-    SELECT FN_CARD_ID(C.card_id), FS.component_text, BS.component_text FROM CARD C
-    JOIN COMPONENT FS ON FS.component_id = C.frontside_id
-    JOIN COMPONENT BS ON BS.component_id = C.backside_id
-    WHERE C.card_id in (SELECT FN_ID_CARD(Card.id) FROM unnest(p_ids) AS Card(id));
+    IF p_ids IS NULL THEN
+        RAISE EXCEPTION 'card ids must not be null' USING ERRCODE = '50001';
+    END IF;
+
+    IF EXISTS (SELECT 1 FROM UNNEST(p_ids) AS CID(id) WHERE SUBSTRING(CID.id, 1, 4) <> 'CARD') THEN
+        RAISE EXCEPTION 'invalid card id format' USING ERRCODE = '50006';
+    END IF;
+
+    SELECT ARRAY_AGG(FN_ID_CARD(CID.id))
+    INTO v_ids
+    FROM UNNEST(p_ids) AS CID(id);
+
+    RETURN QUERY
+    SELECT    FN_CARD_ID(R.card_id), R.frontside_text, R.backside_text
+    FROM      FN_CARD_RETRIEVE (v_ids) AS R;
 END
 $$ LANGUAGE plpgsql;

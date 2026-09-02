@@ -7,15 +7,23 @@
 --           );
 CREATE
 OR        REPLACE FUNCTION ACCOUNT_LOGIN (p_email TYPE_EMAIL, p_password TYPE_PASSWORD) RETURNS TYPE_ID AS $$
+DECLARE
+    v_session INT;
 BEGIN
     IF p_email IS NULL THEN
-        RAISE EXCEPTION '50001: email must not be null';
+        RAISE EXCEPTION 'email must not be null' USING ERRCODE = '50001';
     END IF;
 
     IF p_password IS NULL THEN
-        RAISE EXCEPTION '50001: password must not be null';
+        RAISE EXCEPTION 'password must not be null' USING ERRCODE = '50001';
     END IF;
 
-    RETURN FN_SESSION_ID(FN_ACCOUNT_LOGIN(p_email, p_password));
+    v_session := FN_ACCOUNT_LOGIN(p_email, p_password);
+
+    IF v_session IS NULL THEN
+        RAISE EXCEPTION 'invalid email or password' USING ERRCODE = '50008';
+    END IF;
+
+    RETURN FN_SESSION_ID(v_session);
 END
 $$ LANGUAGE plpgsql;

@@ -49,7 +49,14 @@
 ./schema/index/common.sql
 
 ./protocols/account_login.sql
+./protocols/account_insert.sql
+./protocols/account_logout.sql
+./protocols/card_insert.sql
 ./protocols/card_list.sql
 ./protocols/card_retrieve.sql
 ./protocols/category_list.sql
 ./protocols/category_retrieve.sql
+./protocols/component_insert.sql
+./protocols/component_retrieve.sql
+./protocols/request_log_insert.sql
+./protocols/session_check.sql

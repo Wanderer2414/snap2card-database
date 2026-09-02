@@ -67,3 +67,7 @@
 ./protocols/component_retrieve.sql
 ./protocols/request_log_insert.sql
 ./protocols/session_check.sql
+./protocols/exam_create.sql
+./protocols/exam_start.sql
+./protocols/exam_retrieve.sql
+./protocols/exam_log_result.sql

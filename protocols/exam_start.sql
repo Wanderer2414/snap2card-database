@@ -12,11 +12,32 @@ DECLARE
     v_session INT;
     v_id INT ;
 BEGIN
-    v_session := FN_ID_SESSION(p_session_id);
-    v_id := FN_ID_EXAM(p_exam_id);
-    IF (v_session IS NULL) OR (v_id IS NULL) THEN RETURN NULL;
+    IF p_session_id IS NULL THEN
+        RAISE EXCEPTION 'session id must not be null' USING ERRCODE = '50001';
     END IF;
-    v_id := FN_EXAM_START(v_session, v_id);
-    IF (v_id IS NULL) THEN RETURN NULL; END IF;
-    RETURN FN_EXAM_ID(v_id);
+
+    IF p_exam_id IS NULL THEN
+        RAISE EXCEPTION 'exam id must not be null' USING ERRCODE = '50001';
+    END IF;
+
+    IF SUBSTRING(p_session_id, 1, 4) <> 'SESS' THEN
+        RAISE EXCEPTION 'invalid session id format' USING ERRCODE = '50006';
+    END IF;
+
+    IF SUBSTRING(p_exam_id, 1, 4) <> 'EXAM' THEN
+        RAISE EXCEPTION 'invalid exam id format' USING ERRCODE = '50006';
+    END IF;
+
+    SELECT FN_SESSION_CHECK(FN_ID_SESSION(p_session_id)) INTO v_session;
+    IF v_session IS NULL THEN
+        RAISE EXCEPTION 'no active session found' USING ERRCODE = '50005';
+    END IF;
+
+    v_id := FN_ID_EXAM(p_exam_id);
+    IF NOT EXISTS (SELECT 1 FROM EXAM WHERE exam_id = v_id) THEN
+        RAISE EXCEPTION 'exam not found' USING ERRCODE = '50004';
+    END IF;
+
+    v_id := FN_EXAM_START(FN_ID_SESSION(p_session_id), v_id);
+    RETURN FN_LOG_ID(v_id);
 END $$ LANGUAGE plpgsql;

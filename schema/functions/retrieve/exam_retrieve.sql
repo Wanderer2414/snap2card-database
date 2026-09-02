@@ -11,6 +11,3 @@ BEGIN
     JOIN REVIEW_QUIZ RQ ON EQ.exam_id = p_exam_id AND RQ.quiz_id = EQ.quiz_id
     JOIN CARD C ON RQ.card_id = C.card_id;
 END $$ LANGUAGE plpgsql;
-
-SELECT    *
-FROM      FN_EXAM_REVIEW_RETRIEVE (4);

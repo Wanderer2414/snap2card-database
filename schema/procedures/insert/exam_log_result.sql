@@ -4,7 +4,7 @@
 --           user_answer BOOLEAN                    ,
 --           PRIMARY KEY (log_id, quiz_id)
 --           );
-CREATE OF REPLACE PROCEDURE PR_EXAM_LOG_REVIEW_RESULT (
+CREATE OR REPLACE PROCEDURE PR_EXAM_LOG_REVIEW_RESULT (
 p_exam_log_id INT,
 p_quiz_id INT    ,
 p_result BOOLEAN

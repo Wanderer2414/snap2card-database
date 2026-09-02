@@ -1,0 +1,2 @@
+SELECT    *
+FROM      FN_EXAM_CREATE (1);

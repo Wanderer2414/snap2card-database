@@ -19,8 +19,8 @@
 ./schema/tables/card.sql
 ./schema/tables/quiz.sql
 ./schema/tables/exam.sql
-./schema/tables/exam_log.sql
 ./schema/tables/session.sql
+./schema/tables/exam_log.sql
 ./schema/tables/request_log.sql
 ./schema/tables/account_card_have.sql
 ./schema/tables/category.sql
@@ -34,6 +34,8 @@
 ./schema/functions/insert/component_insert.sql
 ./schema/functions/insert/card_insert.sql
 ./schema/functions/insert/category_insert.sql
+./schema/functions/insert/exam_create.sql
+./schema/functions/insert/exam_start.sql
 ./schema/functions/update/session_check.sql
 ./schema/functions/update/update_account.sql
 ./schema/functions/retrieve/account_retrieve.sql
@@ -42,8 +44,10 @@
 ./schema/functions/retrieve/category_retrieve.sql
 ./schema/functions/retrieve/category_list.sql
 ./schema/functions/retrieve/component_retrieve.sql
+./schema/functions/retrieve/exam_retrieve.sql
 
 ./schema/procedures/insert/categorize.sql
+./schema/procedures/insert/exam_log_result.sql
 ./schema/procedures/update/account_logout.sql
 
 

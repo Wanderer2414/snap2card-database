@@ -12,7 +12,13 @@ DECLARE
     v_id INT;
 BEGIN
     INSERT INTO COMPONENT(component_text, owner_id) VALUES (p_text, p_id)
+    ON CONFLICT 
+    DO NOTHING
     RETURNING component_id INTO v_id;
+
+    IF v_id IS NULL THEN
+        SELECT component_id INTO v_id FROM COMPONENT WHERE LOWER(component_text) = LOWER(p_text);
+    END IF;
 
     RETURN v_id;
 END;

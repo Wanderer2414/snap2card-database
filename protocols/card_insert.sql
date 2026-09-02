@@ -8,6 +8,7 @@ DECLARE
     v_frontside INT;
     v_backside INT ;
     v_creator INT  ;
+    v_id INT;
 BEGIN
     IF p_frontside IS NULL THEN
         RAISE EXCEPTION 'frontside must not be null' USING ERRCODE = '50001';
@@ -40,7 +41,8 @@ BEGIN
     IF v_frontside = v_backside THEN
         RAISE EXCEPTION 'frontside and backside must be different' USING ERRCODE = '50003';
     END IF;
-
-    RETURN FN_CARD_ID(FN_CARD_INSERT(v_frontside, v_backside, v_creator));
+    v_id := FN_CARD_INSERT(v_frontside, v_backside, v_creator);
+    IF v_id IS NULL THEN RETURN v_id; END IF;
+    RETURN FN_CARD_ID(v_id);
 END
 $$ LANGUAGE plpgsql;

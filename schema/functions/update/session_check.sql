@@ -4,6 +4,10 @@ DECLARE
     v_id INT;
 BEGIN
     UPDATE SESSION
+    SET final_status = 'ENDED'
+    WHERE (final_status = 'ACTIVE') AND (logout_time < NOW());
+
+    UPDATE SESSION
     SET logout_time = NOW() + INTERVAL '15m'
     WHERE final_status = 'ACTIVE' AND session_id = p_id
     RETURNING owner_id INTO v_id;

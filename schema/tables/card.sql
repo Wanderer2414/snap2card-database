@@ -8,8 +8,7 @@ CREATE    TABLE CARD (
           FOREIGN KEY (backside_id) REFERENCES COMPONENT (component_id)              ,
           FOREIGN KEY (creator_id) REFERENCES ACCOUNT (account_id)                   ,
           CONSTRAINT CK_CARD_DIFFERENT_FRONT_BACK CHECK (frontside_id <> backside_id),
-          CONSTRAINT CK_CARD_UNIQUE_FRONTSIZE UNIQUE (frontside_id)                  ,
-          CONSTRAINT CK_CARD_UNIQUE_BACKSIZE UNIQUE (backside_id)
+          CONSTRAINT CK_CARD_UNIQUE UNIQUE (frontside_id, backside_id)
           );
 
 -- DROP      TABLE CARD CASCADE;

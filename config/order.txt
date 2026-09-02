@@ -51,6 +51,7 @@
 ./protocols/account_login.sql
 ./protocols/account_insert.sql
 ./protocols/account_logout.sql
+./protocols/account_retrieve.sql
 ./protocols/card_insert.sql
 ./protocols/card_list.sql
 ./protocols/card_retrieve.sql

@@ -48,6 +48,7 @@ BEGIN
     END LOOP;
 
     CALL      EXAM_COMPLETED (log_id);
+    CALL ACCOUNT_LOGOUT(SESSION_CHECK(session_id));
 
 END;
 $$

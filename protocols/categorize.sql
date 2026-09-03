@@ -1,5 +1,5 @@
 CREATE
-OR        REPLACE PROCEDURE CATEGORY_TO_CARD_CATEGORIZE (p_card_id TYPE_ID, p_category_ids TYPE_ID[]) AS $$ 
+OR        REPLACE FUNCTION CATEGORY_TO_CARD_CATEGORIZE (p_card_id TYPE_ID, p_category_ids TYPE_ID[]) RETURNS VOID AS $$ 
 DECLARE
     v_card INT        ;
     v_categories INT[] ;
@@ -38,11 +38,11 @@ BEGIN
         RAISE EXCEPTION 'category not found' USING ERRCODE = '50004';
     END IF;
 
-    CALL PR_CATEGORY_TO_CARD_CATEGORIZE(v_card, v_categories);
+    PERFORM FN_CATEGORY_TO_CARD_CATEGORIZE(v_card, v_categories);
 END $$ LANGUAGE plpgsql;
 
 CREATE
-OR        REPLACE PROCEDURE CARD_TO_CATEGORY_CATEGORIZE (p_category_id TYPE_ID, p_card_ids TYPE_ID[]) AS $$ 
+OR        REPLACE FUNCTION CARD_TO_CATEGORY_CATEGORIZE (p_category_id TYPE_ID, p_card_ids TYPE_ID[]) RETURNS VOID AS $$ 
 DECLARE
     v_category INT  ;
     v_cards INT[]   ;
@@ -81,5 +81,5 @@ BEGIN
         RAISE EXCEPTION 'card not found' USING ERRCODE = '50004';
     END IF;
 
-    CALL PR_CARD_TO_CATEGORY_CATEGORIZE(v_category, v_cards);
+    PERFORM FN_CARD_TO_CATEGORY_CATEGORIZE(v_category, v_cards);
 END $$ LANGUAGE plpgsql;

@@ -1,5 +1,5 @@
 CREATE
-OR        REPLACE PROCEDURE ACCOUNT_LOGOUT (p_account_id TYPE_ID) AS $$
+OR        REPLACE FUNCTION ACCOUNT_LOGOUT (p_account_id TYPE_ID) RETURNS VOID AS $$
 DECLARE
     v_id INT;
 BEGIN
@@ -17,6 +17,6 @@ BEGIN
         RAISE EXCEPTION 'no active session found for account' USING ERRCODE = '50005';
     END IF;
 
-    CALL PR_ACCOUNT_LOGOUT(v_id);
+    PERFORM FN_ACCOUNT_LOGOUT(v_id);
 END
 $$ LANGUAGE plpgsql;

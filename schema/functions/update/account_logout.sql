@@ -7,7 +7,7 @@
 --           FOREIGN KEY (owner_id) REFERENCES ACCOUNT (account_id)
 --           );
 CREATE
-OR        REPLACE PROCEDURE PR_ACCOUNT_LOGOUT (p_id INT) AS $$ BEGIN
+OR        REPLACE FUNCTION FN_ACCOUNT_LOGOUT (p_id INT) RETURNS VOID AS $$ BEGIN
     UPDATE SESSION
     SET final_status = 'ENDED', logout_time = NOW()
     WHERE owner_id = p_id AND final_status = 'ACTIVE';

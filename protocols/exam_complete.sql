@@ -1,5 +1,5 @@
 CREATE
-OR        REPLACE PROCEDURE EXAM_COMPLETED (p_exam_log_id TYPE_ID) AS $$ 
+OR        REPLACE FUNCTION EXAM_COMPLETED (p_exam_log_id TYPE_ID) RETURNS VOID AS $$ 
 BEGIN
     IF p_exam_log_id IS NULL THEN
         RAISE EXCEPTION 'exam log id must not be null' USING ERRCODE = '50001';
@@ -17,5 +17,5 @@ BEGIN
         RAISE EXCEPTION 'exam log has no answered questions' USING ERRCODE = '50003';
     END IF;
 
-    CALL PR_EXAM_COMPLETED(FN_ID_LOG(p_exam_log_id));
+    PERFORM FN_EXAM_COMPLETED(FN_ID_LOG(p_exam_log_id));
 END $$ LANGUAGE plpgsql;

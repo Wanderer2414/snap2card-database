@@ -17,10 +17,10 @@ BEGIN
     FOR r IN
         SELECT *, row_number() over () as rn FROM EXAM_REVIEW_RETRIEVE(exam_id)
     LOOP
-        CALL EXAM_LOG_REVIEW_RESULT (log_id, r.quiz_id, (r.rn % 2 = 0));
+        PERFORM EXAM_LOG_REVIEW_RESULT (log_id, r.quiz_id, (r.rn % 2 = 0));
     END LOOP;
 
-    CALL      EXAM_COMPLETED (log_id);
+    PERFORM      EXAM_COMPLETED (log_id);
 
 END;
 $$;
@@ -44,11 +44,11 @@ BEGIN
     FOR r IN
         SELECT *, row_number() over () as rn FROM EXAM_REVIEW_RETRIEVE(exam_id)
     LOOP
-        CALL EXAM_LOG_REVIEW_RESULT (log_id, r.quiz_id, (r.rn % 3 = 0));
+        PERFORM EXAM_LOG_REVIEW_RESULT (log_id, r.quiz_id, (r.rn % 3 = 0));
     END LOOP;
 
-    CALL      EXAM_COMPLETED (log_id);
-    CALL ACCOUNT_LOGOUT(SESSION_CHECK(session_id));
+    PERFORM      EXAM_COMPLETED (log_id);
+    PERFORM ACCOUNT_LOGOUT(SESSION_CHECK(session_id));
 
 END;
 $$

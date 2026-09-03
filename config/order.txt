@@ -56,15 +56,16 @@
 ./schema/functions/retrieve/exam_retrieve.sql
 ./schema/functions/retrieve/category_log_related.sql
 
-./schema/procedures/insert/categorize.sql
-./schema/procedures/insert/exam_log_result.sql
-./schema/procedures/update/account_logout.sql
-./schema/procedures/update/exam_complete.sql
+./schema/functions/insert/categorize.sql
+./schema/functions/insert/exam_log_result.sql
+./schema/functions/update/account_logout.sql
+./schema/functions/update/exam_complete.sql
 
 
 ./schema/index/common.sql
 ./schema/triggers/update/category_update_time.sql
 ./schema/triggers/update/category_num_of_card.sql
+./schema/triggers/update/category_card_follow_mastery.sql
 ./schema/triggers/update/account_category_follow_mastery.sql
 
 ./protocols/account_login.sql

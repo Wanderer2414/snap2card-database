@@ -114,6 +114,18 @@ Errors: `50001`, `50002`, `50004`, `50006`.
 
 ---
 
+**`ACCOUNT_LOGOUT`** — ends the active session(s) of an account.
+
+| Parameter      | Type      |
+| -------------- | --------- |
+| `p_account_id` | `TYPE_ID` |
+
+Returns: nothing (`void`).
+
+Errors: `50001`, `50005`, `50006`.
+
+---
+
 ### Sessions
 
 **`SESSION_CHECK`** — validates a session and refreshes its expiry.
@@ -198,6 +210,47 @@ categories the system adds automatically, not for the protocol.)
 Returns: `TYPE_ID` — the category id (`CATE...`).
 
 Errors: `50001`, `50002`, `50004`, `50006`.
+
+---
+
+**`CATEGORY_FOLLOW`** — follows a category for an account: creates the follow row,
+grants all cards in the category to the account, and computes the initial
+`mastery_score`.
+
+| Parameter       | Type      |
+| --------------- | --------- |
+| `p_account_id`  | `TYPE_ID` |
+| `p_category_id` | `TYPE_ID` |
+
+Returns: nothing (`void`).
+
+Errors: `50001`, `50004`, `50006`.
+
+---
+
+**`CATEGORY_TO_CARD_CATEGORIZE`** — assigns a card to one or more categories.
+
+| Parameter       | Type        |
+| --------------- | ----------- |
+| `p_card_id`     | `TYPE_ID`   |
+| `p_category_ids`| `TYPE_ID[]` |
+
+Returns: nothing (`void`).
+
+Errors: `50001`, `50004`, `50006`.
+
+---
+
+**`CARD_TO_CATEGORY_CATEGORIZE`** — assigns one or more cards to a category.
+
+| Parameter       | Type        |
+| --------------- | ----------- |
+| `p_category_id` | `TYPE_ID`   |
+| `p_card_ids`    | `TYPE_ID[]` |
+
+Returns: nothing (`void`).
+
+Errors: `50001`, `50004`, `50006`.
 
 ---
 
@@ -494,3 +547,34 @@ Returns a table:
 | `gmt`          | `CHAR(3)`   |
 
 Errors: `50001`, `50004`, `50006`.
+
+---
+
+**`EXAM_LOG_REVIEW_RESULT`** — records a user's answer to a review quiz on an
+exam log.
+
+| Parameter       | Type      |
+| --------------- | --------- |
+| `p_exam_log_id` | `TYPE_ID` |
+| `p_quiz_id`     | `TYPE_ID` |
+| `p_result`      | `BOOLEAN` |
+
+Returns: nothing (`void`).
+
+If a result for the same `(p_exam_log_id, p_quiz_id)` already exists, the
+conflict is reported rather than ignored.
+
+Errors: `50001`, `50003`, `50004`, `50006`.
+
+---
+
+**`EXAM_COMPLETED`** — finalizes an exam log: sets its end time and grades it by
+counting the number of correctly answered (TRUE) review questions.
+
+| Parameter       | Type      |
+| --------------- | --------- |
+| `p_exam_log_id` | `TYPE_ID` |
+
+Returns: nothing (`void`).
+
+Errors: `50001`, `50003`, `50004`, `50006`.

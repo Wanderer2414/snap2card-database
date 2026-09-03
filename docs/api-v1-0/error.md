@@ -6,7 +6,7 @@ A summary of every error code raised by the database layer.
 
 All input validation happens at the **protocol layer** (the API boundary).
 Protocol functions reject invalid input before delegating to internal functions,
-so internal functions (`FN_*`, `PR_*`) always receive valid data and never raise
+so internal functions (`FN_*`) always receive valid data and never raise
 business-rule exceptions.
 
 Exceptions are raised with the standard PostgreSQL `USING ERRCODE` clause. The

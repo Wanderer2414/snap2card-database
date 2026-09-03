@@ -5,11 +5,11 @@
 --           PRIMARY KEY (log_id, quiz_id)
 --           );
 CREATE
-OR        REPLACE PROCEDURE EXAM_LOG_REVIEW_RESULT (
+OR        REPLACE FUNCTION EXAM_LOG_REVIEW_RESULT (
           p_exam_log_id TYPE_ID,
           p_quiz_id TYPE_ID    ,
           p_result BOOLEAN
-          ) AS $$ 
+          ) RETURNS VOID AS $$ 
 BEGIN
     IF p_exam_log_id IS NULL THEN
         RAISE EXCEPTION 'exam log id must not be null' USING ERRCODE = '50001';
@@ -39,7 +39,7 @@ BEGIN
         RAISE EXCEPTION 'quiz not found' USING ERRCODE = '50004';
     END IF;
 
-    CALL PR_EXAM_LOG_REVIEW_RESULT(FN_ID_LOG(p_exam_log_id), FN_ID_QUIZ(p_quiz_id), p_result);
+    PERFORM FN_EXAM_LOG_REVIEW_RESULT(FN_ID_LOG(p_exam_log_id), FN_ID_QUIZ(p_quiz_id), p_result);
 EXCEPTION
     WHEN unique_violation THEN
         RAISE EXCEPTION 'result for this quiz is already recorded' USING ERRCODE = '50003';

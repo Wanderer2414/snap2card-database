@@ -26,14 +26,18 @@ BEGIN
     SELECT quiz_id, card_id FROM ids
     JOIN cards USING (rn);
 
-    INSERT INTO EXAM(exam_level, total_score) VALUES ('EASY', NULL)
+    WITH p_name AS (
+        SELECT category_name AS name FROM CATEGORY WHERE category_id = p_category_id
+    )
+    INSERT INTO EXAM(exam_name, exam_level, total_score)
+    SELECT name, 'EASY', CARDINALITY(v_ids) FROM p_name
     RETURNING exam_id INTO v_exam_id;
 
     INSERT INTO EXAM_CATEGORY_RELATED(exam_id, category_id) VALUES (v_exam_id, p_category_id) ON CONFLICT (exam_id, category_id) DO NOTHING;
 
     INSERT INTO EXAM_QUIZ 
     SELECT v_exam_id, C.quiz_id FROM REVIEW_QUIZ C
-    WHERE C.card_id IN (SELECT * FROM unnest(v_ids));
+    WHERE C.card_id = ANY(v_ids);
 
     RETURN v_exam_id;
 END $$ LANGUAGE plpgsql;

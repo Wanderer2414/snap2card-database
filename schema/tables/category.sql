@@ -1,6 +1,7 @@
 CREATE    TABLE CATEGORY (
           category_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-          category_name TYPE_NAME_CATEGORY UNIQUE NOT NULL
+          category_name TYPE_NAME_CATEGORY UNIQUE NOT NULL        ,
+          updated_time TIMESTAMPTZ DEFAULT NOW()
           );
 
 CREATE    TABLE CATEGORY_CARD_CONTAIN (

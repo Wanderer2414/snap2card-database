@@ -1,5 +1,6 @@
 CREATE    TABLE EXAM (
           exam_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+          exam_name TYPE_NAME_EXAM DEFAULT NULL               ,
           date_created TIMESTAMPTZ DEFAULT NOW() NOT NULL     ,
           exam_level TYPE_LEVEL_EXAM NOT NULL                 ,
           total_score INT CHECK (total_score > 0)

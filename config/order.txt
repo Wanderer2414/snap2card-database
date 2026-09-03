@@ -45,13 +45,16 @@
 ./schema/functions/retrieve/category_list.sql
 ./schema/functions/retrieve/component_retrieve.sql
 ./schema/functions/retrieve/exam_retrieve.sql
+./schema/functions/retrieve/category_log_related.sql
 
 ./schema/procedures/insert/categorize.sql
 ./schema/procedures/insert/exam_log_result.sql
 ./schema/procedures/update/account_logout.sql
+./schema/procedures/update/exam_complete.sql
 
 
 ./schema/index/common.sql
+./schema/triggers/update/category_update_time.sql
 
 ./protocols/account_login.sql
 ./protocols/account_insert.sql
@@ -63,6 +66,8 @@
 ./protocols/card_retrieve.sql
 ./protocols/category_list.sql
 ./protocols/category_retrieve.sql
+./protocols/categorize.sql
+./protocols/category_log_related.sql
 ./protocols/component_insert.sql
 ./protocols/component_retrieve.sql
 ./protocols/request_log_insert.sql
@@ -71,3 +76,4 @@
 ./protocols/exam_start.sql
 ./protocols/exam_retrieve.sql
 ./protocols/exam_log_result.sql
+./protocols/exam_complete.sql

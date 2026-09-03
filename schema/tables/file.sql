@@ -11,3 +11,6 @@ CREATE    TABLE FILE (
           FOREIGN KEY (owner_id) REFERENCES ACCOUNT (account_id)     ,
           CONSTRAINT UK_UNIQUE_FILE_DATA UNIQUE (file_name, hash_code)
           );
+
+ALTER     TABLE ACCOUNT
+ADD       CONSTRAINT FK_ACCOUNT_AVATAR FOREIGN KEY (account_avatar) REFERENCES FILE (file_id);

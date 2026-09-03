@@ -40,4 +40,7 @@ BEGIN
     END IF;
 
     CALL PR_EXAM_LOG_REVIEW_RESULT(FN_ID_LOG(p_exam_log_id), FN_ID_QUIZ(p_quiz_id), p_result);
+EXCEPTION
+    WHEN unique_violation THEN
+        RAISE EXCEPTION 'result for this quiz is already recorded' USING ERRCODE = '50003';
 END $$ LANGUAGE plpgsql;

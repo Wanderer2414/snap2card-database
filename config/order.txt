@@ -43,6 +43,7 @@
 ./schema/functions/update/session_check.sql
 ./schema/functions/update/update_account.sql
 ./schema/functions/retrieve/account_retrieve.sql
+./schema/functions/retrieve/account_avatar_retrieve.sql
 ./schema/functions/retrieve/card_list.sql
 ./schema/functions/retrieve/card_retrieve.sql
 ./schema/functions/retrieve/category_retrieve.sql
@@ -64,6 +65,7 @@
 ./protocols/account_insert.sql
 ./protocols/account_logout.sql
 ./protocols/account_retrieve.sql
+./protocols/account_avatar_retrieve.sql
 ./protocols/update_account.sql
 ./protocols/card_insert.sql
 ./protocols/card_list.sql

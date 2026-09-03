@@ -3,6 +3,7 @@ OR        REPLACE FUNCTION ACCOUNT_RETRIEVE (p_account_id TYPE_ID) RETURNS TABLE
           account_email TYPE_EMAIL      ,
           account_name TYPE_NAME_ACCOUNT,
           account_phone TYPE_PHONE      ,
+          account_daily_goal INTEGER    ,
           YEAR INTEGER                  ,
           MONTH INTEGER                 ,
           DAY INTEGER                   ,
@@ -21,7 +22,7 @@ BEGIN
     END IF;
 
     RETURN QUERY 
-    SELECT A.account_email, A.account_name, A.account_phone,
+    SELECT A.account_email, A.account_name, A.account_phone, A.account_daily_goal,
            (FN_GET_GMT(A.date_created)).YEAR,
            (FN_GET_GMT(A.date_created)).MONTH,
            (FN_GET_GMT(A.date_created)).DAY,

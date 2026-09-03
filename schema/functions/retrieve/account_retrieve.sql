@@ -4,6 +4,8 @@
 --           account_name TYPE_NAME_ACCOUNT NOT NULL                ,
 --           account_phone TYPE_PHONE NOT NULL                      ,
 --           account_password TYPE_PASSWORD_CRYPTED NOT NULL        ,
+--           account_avatar INT DEFAULT NULL                        ,
+--           account_daily_goal INT CHECK (account_daily_goal > 0)  ,
 --           date_created TIMESTAMPTZ DEFAULT NOW() NOT NULL
 --           );
 CREATE
@@ -11,10 +13,11 @@ OR        REPLACE FUNCTION FN_ACCOUNT_RETRIEVE (p_id INT) RETURNS TABLE (
           account_email TYPE_EMAIL      ,
           account_name TYPE_NAME_ACCOUNT,
           account_phone TYPE_PHONE      ,
+          account_daily_goal INT        ,
           date_created TIMESTAMPTZ
           ) AS $$
 BEGIN
     RETURN QUERY 
-    SELECT A.account_email, A.account_name, A.account_phone, A.date_created FROM ACCOUNT A WHERE account_id = p_id;
+    SELECT A.account_email, A.account_name, A.account_phone, A.account_daily_goal, A.date_created FROM ACCOUNT A WHERE account_id = p_id;
 END;
 $$ LANGUAGE plpgsql;

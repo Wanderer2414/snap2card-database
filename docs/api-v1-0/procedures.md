@@ -81,3 +81,18 @@ counting the number of correctly answered (TRUE) review questions.
 Returns: nothing.
 
 Errors: `50001`, `50003`, `50004`, `50006`.
+
+---
+
+**`CATEGORY_FOLLOW`** — follows a category for an account: creates the follow row,
+grants all cards in the category to the account, and computes the initial
+`mastery_score`.
+
+| Parameter      | Type      |
+| -------------- | --------- |
+| `p_account_id` | `TYPE_ID` |
+| `p_category_id`| `TYPE_ID` |
+
+Returns: nothing.
+
+Errors: `50001`, `50004`, `50006`.

@@ -28,6 +28,7 @@
 ./schema/tables/request_log.sql
 ./schema/tables/account_card_have.sql
 ./schema/tables/account_category_have.sql
+./schema/tables/account_category_follow.sql
 
 ./schema/grant/account.sql
 
@@ -37,6 +38,7 @@
 ./schema/functions/insert/component_insert.sql
 ./schema/functions/insert/card_insert.sql
 ./schema/functions/insert/category_insert.sql
+./schema/functions/insert/category_follow.sql
 ./schema/functions/insert/file_insert.sql
 ./schema/functions/insert/exam_create.sql
 ./schema/functions/insert/exam_start.sql
@@ -48,6 +50,7 @@
 ./schema/functions/retrieve/card_retrieve.sql
 ./schema/functions/retrieve/category_retrieve.sql
 ./schema/functions/retrieve/category_list.sql
+./schema/functions/retrieve/recent_category_take_list.sql
 ./schema/functions/retrieve/component_retrieve.sql
 ./schema/functions/retrieve/file_retrieve.sql
 ./schema/functions/retrieve/exam_retrieve.sql
@@ -61,6 +64,8 @@
 
 ./schema/index/common.sql
 ./schema/triggers/update/category_update_time.sql
+./schema/triggers/update/category_num_of_card.sql
+./schema/triggers/update/account_category_follow_mastery.sql
 
 ./protocols/account_login.sql
 ./protocols/account_insert.sql
@@ -72,7 +77,9 @@
 ./protocols/card_list.sql
 ./protocols/card_retrieve.sql
 ./protocols/category_insert.sql
+./protocols/category_follow.sql
 ./protocols/category_list.sql
+./protocols/recent_category_take_list.sql
 ./protocols/category_retrieve.sql
 ./protocols/categorize.sql
 ./protocols/category_log_related.sql

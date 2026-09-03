@@ -227,3 +227,10 @@ CALL      PR_CATEGORY_TO_CARD_CATEGORIZE (98, ARRAY[7]);
 CALL      PR_CATEGORY_TO_CARD_CATEGORIZE (99, ARRAY[7]);
 
 CALL      PR_CATEGORY_TO_CARD_CATEGORIZE (100, ARRAY[7]);
+
+-- Follow dummy: account 1 (tester) follows a category they have and one they don't.
+SELECT    FN_CATEGORY_INSERT (2, 'OTHER_OWNER_CATEGORY');
+
+INSERT    INTO ACCOUNT_CATEGORY_FOLLOW (account_id, category_id, followed_date)
+VALUES    (1, 1, NOW())  -- category 1 (ACTIONS): account 1 has cards in it
+        , (1, 11, NOW()); -- category 11 (OTHER_OWNER_CATEGORY, owned by account 2): account 1 does not have it

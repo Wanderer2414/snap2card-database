@@ -201,7 +201,8 @@ Errors: `50001`, `50002`, `50004`, `50006`.
 
 ---
 
-**`CATEGORY_LIST`** — lists the categories of an account with card counts.
+**`CATEGORY_LIST`** — lists the categories **followed by** the account (from
+`ACCOUNT_CATEGORY_FOLLOW`) with card counts and mastery.
 
 | Parameter      | Type      |
 | -------------- | --------- |
@@ -214,6 +215,7 @@ Returns a table:
 | `category_id`  | `TYPE_ID`        |
 | `category_name`| `TYPE_NAME_CATEGORY` |
 | `numOfCard`    | `INT`            |
+| `mastery`      | `FLOAT`          |
 | `YEAR`         | `INTEGER`        |
 | `MONTH`        | `INTEGER`        |
 | `DAY`          | `INTEGER`        |
@@ -222,11 +224,52 @@ Returns a table:
 | `SECOND`       | `INTEGER`        |
 | `gmt`          | `CHAR(3)`        |
 
+Only categories the account follows are returned. `mastery` is read directly from
+`ACCOUNT_CATEGORY_FOLLOW.mastery_score` (it is not recomputed here); it is kept in
+sync by the maintenance trigger on `ACCOUNT_CARD_HAVE` updates. `numOfCard` is the
+category's stored card count (`CATEGORY.numOfCard`, maintained by a trigger on
+`CATEGORY_CARD_CONTAIN`), not recomputed here. A followed category in which the
+account has no cards still appears, with `numOfCard` 0.
+
 Errors: `50001`, `50006`.
 
 ---
 
-**`CATEGORY_RETRIEVE`** — retrieves a single category with its card ids.
+**`RECENT_CATEGORY_TAKE_LIST`** — lists the `n` most recent distinct categories
+**followed by** the account (from `ACCOUNT_CATEGORY_FOLLOW`) that the account has
+taken exams in, from the account's latest exam takes.
+
+| Parameter      | Type      |
+| -------------- | --------- |
+| `p_account_id` | `TYPE_ID` |
+| `p_n`          | `INT`     |
+
+Returns a table:
+
+| Column         | Type                 |
+| -------------- | -------------------- |
+| `category_id`  | `TYPE_ID`            |
+| `category_name`| `TYPE_NAME_CATEGORY` |
+| `mastery`      | `FLOAT`              |
+| `YEAR`         | `INTEGER`            |
+| `MONTH`        | `INTEGER`            |
+| `DAY`          | `INTEGER`            |
+| `HOUR`         | `INTEGER`            |
+| `MINUTE`       | `INTEGER`            |
+| `SECOND`       | `INTEGER`            |
+| `gmt`          | `CHAR(3)`            |
+
+Only categories the account follows appear. Categories are ordered by their most
+recent exam take (descending). `date_created` here is the timestamp of the
+category's latest take. The timestamp columns are the `FN_GET_GMT` split of that
+take time. A `p_n <= 0` returns an empty result. `mastery` is read directly from
+`ACCOUNT_CATEGORY_FOLLOW.mastery_score`.
+
+Errors: `50001`, `50004`, `50006`.
+
+---
+
+**`CATEGORY_RETRIEVE`** — retrieves a single followed category with its card ids.
 
 | Parameter      | Type      |
 | -------------- | --------- |
@@ -249,12 +292,12 @@ Returns a table:
 | `SECOND`       | `INTEGER`        |
 | `gmt`          | `CHAR(3)`        |
 
-`mastery` is the category mastery, expressed as the average of the mastery of
-each card in the category: `sum(card_mastery) / numOfCard`. Each card's mastery
-is the ratio `true_count / false_count` of its `ACCOUNT_CARD_HAVE` counters for
-the given account (literal ratio; not bounded to 0-100). `false_count` can never
-be 0 because `ACCOUNT_CARD_HAVE` enforces `CHECK (false_count >= 3)`. A category
-with no cards returns `NULL` mastery.
+Only a category the account follows is returned; a non-followed category yields an
+empty result. `mastery` is read directly from `ACCOUNT_CATEGORY_FOLLOW.mastery_score`
+(it is not recomputed here); it is kept in sync by the maintenance trigger on
+`ACCOUNT_CARD_HAVE` updates. `numOfCard` is the category's stored card count
+(`CATEGORY.numOfCard`, maintained by a trigger on `CATEGORY_CARD_CONTAIN`), not
+recomputed here.
 
 Errors: `50001`, `50006`.
 

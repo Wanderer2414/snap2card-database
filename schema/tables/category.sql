@@ -2,6 +2,7 @@ CREATE    TABLE CATEGORY (
           category_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
           owner_id INT                                              ,
           category_name TYPE_NAME_CATEGORY NOT NULL                ,
+          numOfCard INT NOT NULL DEFAULT 0 CHECK (numOfCard >= 0)  ,
           date_created TIMESTAMPTZ DEFAULT NOW() NOT NULL          ,
           updated_time TIMESTAMPTZ DEFAULT NOW()                   ,
           FOREIGN KEY (owner_id) REFERENCES ACCOUNT (account_id)   ,

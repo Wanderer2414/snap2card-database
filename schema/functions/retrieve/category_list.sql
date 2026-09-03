@@ -10,11 +10,9 @@ OR        REPLACE FUNCTION FN_CATEGORY_LIST (p_owner INT, p_category_id INT) RET
           ) AS $$
           BEGIN
             RETURN QUERY 
-            SELECT    C.category_name, CAST(COUNT(DISTINCT CCC.card_id) AS INTEGER), MIN(ACH.date_created)
+            SELECT    C.category_name, C.numOfCard, C.date_created
             FROM      CATEGORY C
-            JOIN CATEGORY_CARD_CONTAIN CCC ON CCC.category_id = C.category_id AND C.category_id = p_category_id
-            JOIN ACCOUNT_CARD_HAVE ACH ON ACH.card_id = CCC.card_id AND ACH.account_id = p_owner
-            GROUP BY C.category_name;
+            WHERE     C.category_id = p_category_id;
           END
           $$ LANGUAGE plpgsql;
 
@@ -23,15 +21,15 @@ OR        REPLACE FUNCTION FN_CATEGORY_LIST (p_owner INT) RETURNS TABLE (
           category_id INT                 ,
           category_name TYPE_NAME_CATEGORY,
           numOfCard INT                   ,
+          mastery FLOAT                   ,
           date_created TIMESTAMPTZ
           ) AS $$
           BEGIN
             RETURN QUERY 
-            SELECT    C.category_id, C.category_name, CAST(COUNT(DISTINCT CCC.card_id) AS INTEGER), MIN(ACH.date_created)
-            FROM      CATEGORY C
-            JOIN CATEGORY_CARD_CONTAIN CCC ON CCC.category_id = C.category_id
-            JOIN ACCOUNT_CARD_HAVE ACH ON ACH.card_id = CCC.card_id AND ACH.account_id = p_owner
-            GROUP BY C.category_id, C.category_name;
+            SELECT    C.category_id, C.category_name, C.numOfCard,
+                      ACF.mastery_score, C.date_created
+            FROM      ACCOUNT_CATEGORY_FOLLOW ACF
+            JOIN CATEGORY C ON C.category_id = ACF.category_id AND ACF.account_id = p_owner;
           END
           $$ LANGUAGE plpgsql;
 

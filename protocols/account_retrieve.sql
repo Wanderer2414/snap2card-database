@@ -21,7 +21,14 @@ BEGIN
     END IF;
 
     RETURN QUERY 
-    SELECT A.account_email, A.account_name, A.account_phone, A.YEAR, A.MONTH, A.DAY, A.HOUR, A.MINUTE, A.SECOND, A.gmt
+    SELECT A.account_email, A.account_name, A.account_phone,
+           (FN_GET_GMT(A.date_created)).YEAR,
+           (FN_GET_GMT(A.date_created)).MONTH,
+           (FN_GET_GMT(A.date_created)).DAY,
+           (FN_GET_GMT(A.date_created)).HOUR,
+           (FN_GET_GMT(A.date_created)).MINUTE,
+           (FN_GET_GMT(A.date_created)).SECOND,
+           (FN_GET_GMT(A.date_created)).gmt
     FROM FN_ACCOUNT_RETRIEVE(FN_ID_ACCOUNT(p_account_id)) AS A;
 END;
 $$ LANGUAGE plpgsql;

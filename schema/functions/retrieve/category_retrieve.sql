@@ -3,23 +3,14 @@ OR        REPLACE FUNCTION FN_CATEGORY_RETRIEVE (p_owner INT, p_category_id INT)
           category_name TYPE_NAME_CATEGORY,
           numOfCard INT                   ,
           card_ids INT[]                  ,
-          YEAR INTEGER                    ,
-          MONTH INTEGER                   ,
-          DAY INTEGER                     ,
-          HOUR INTEGER                    ,
-          MINUTE INTEGER                  ,
-          SECOND INTEGER                  ,
-          gmt CHAR(3)
+          date_created TIMESTAMPTZ
           ) AS $$
           BEGIN
             RETURN QUERY 
-            SELECT    C.category_name, CAST(COUNT(DISTINCT CCC.card_id) AS INTEGER), array_agg(CCC.card_id), (FN_GET_GMT(MIN(ACH.date_created))).*
+            SELECT    C.category_name, CAST(COUNT(DISTINCT CCC.card_id) AS INTEGER), array_agg(CCC.card_id), MIN(ACH.date_created)
             FROM      CATEGORY C
             JOIN CATEGORY_CARD_CONTAIN CCC ON CCC.category_id = C.category_id AND C.category_id = p_category_id
             JOIN ACCOUNT_CARD_HAVE ACH ON ACH.card_id = CCC.card_id AND ACH.account_id = p_owner
             GROUP BY C.category_name;
           END
           $$ LANGUAGE plpgsql;
-
-SELECT    *
-FROM      FN_CATEGORY_RETRIEVE (1, 1)

@@ -22,7 +22,14 @@ OR        REPLACE FUNCTION CATEGORY_LIST (p_account_id TYPE_ID) RETURNS TABLE (
             END IF;
 
             RETURN QUERY 
-            SELECT    FN_CATEGORY_ID(C.category_id), C.category_name, C.numOfCard, C.YEAR, C.MONTH, C.DAY, C.HOUR, C.MINUTE, C.SECOND, C.gmt
+            SELECT    FN_CATEGORY_ID(C.category_id), C.category_name, C.numOfCard,
+                      (FN_GET_GMT(C.date_created)).YEAR,
+                      (FN_GET_GMT(C.date_created)).MONTH,
+                      (FN_GET_GMT(C.date_created)).DAY,
+                      (FN_GET_GMT(C.date_created)).HOUR,
+                      (FN_GET_GMT(C.date_created)).MINUTE,
+                      (FN_GET_GMT(C.date_created)).SECOND,
+                      (FN_GET_GMT(C.date_created)).gmt
             FROM      FN_CATEGORY_LIST(FN_ID_ACCOUNT(p_account_id)) C;
           END
           $$ LANGUAGE plpgsql;

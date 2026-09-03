@@ -162,6 +162,25 @@ Errors: `50001`, `50006`.
 
 ### Categories
 
+**`CATEGORY_INSERT`** — creates a category owned by an account, or returns the
+existing one if the account already has a category with the same name.
+
+| Parameter | Type      |
+| --------- | --------- |
+| `p_owner` | `TYPE_ID` |
+| `p_name`  | `TEXT`    |
+
+`p_owner` is required and must reference an existing account. `p_name` must be
+uppercase (enforced by the `TYPE_NAME_CATEGORY` domain) and at most 20
+characters. Category names are unique per owner. (A `NULL` encounter is only for
+categories the system adds automatically, not for the protocol.)
+
+Returns: `TYPE_ID` — the category id (`CATE...`).
+
+Errors: `50001`, `50002`, `50004`, `50006`.
+
+---
+
 **`CATEGORY_LIST`** — lists the categories of an account with card counts.
 
 | Parameter      | Type      |

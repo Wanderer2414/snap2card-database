@@ -64,6 +64,7 @@
 ./protocols/card_insert.sql
 ./protocols/card_list.sql
 ./protocols/card_retrieve.sql
+./protocols/category_insert.sql
 ./protocols/category_list.sql
 ./protocols/category_retrieve.sql
 ./protocols/categorize.sql

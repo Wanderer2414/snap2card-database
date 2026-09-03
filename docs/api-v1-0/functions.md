@@ -20,6 +20,7 @@ Custom domain types used by protocol signatures:
 | `TYPE_NAME_CATEGORY`| `VARCHAR(20)`   | Must be uppercase                                 |
 | `TYPE_NAME_FILE`    | `VARCHAR(60)`   | Max 60 characters                                 |
 | `TYPE_FILE_TYPE`    | enum            | `pdf`, `png`, `jpg`, `bmp`, `ico`, `webp`         |
+| `TYPE_CARD_INSERT`  | composite       | `(frontSide_id TYPE_ID, backSide_id TYPE_ID)`     |
 
 ## Functions
 
@@ -143,7 +144,9 @@ Errors: `50006`.
 
 ### Cards
 
-**`CARD_INSERT`** — creates a card from two components.
+**`CARD_INSERT`** — creates one or more cards, each from a front and back side.
+
+Single-card overload:
 
 | Parameter     | Type      |
 | ------------- | --------- |
@@ -153,7 +156,22 @@ Errors: `50006`.
 
 Returns: `TYPE_ID` — the new card id (`CARD...`).
 
-Errors: `50001`, `50003`, `50006`.
+Batch overload:
+
+| Parameter   | Type                |
+| ----------- | ------------------- |
+| `p_cards`   | `TYPE_CARD_INSERT[]`|
+| `p_owner`   | `TYPE_ID`           |
+
+Each element of `p_cards` is `(frontSide_id, backSide_id)`, both `COMP...` ids.
+Returns a table of the card ids of every card created (or already existing for
+the same front/back pair):
+
+| Column    | Type      |
+| --------- | --------- |
+| `card_id` | `TYPE_ID` |
+
+Errors: `50001`, `50003`, `50004`, `50006`.
 
 ---
 
@@ -396,7 +414,9 @@ Errors: `50001`, `50004`, `50006`.
 
 ### Components
 
-**`COMPONENT_INSERT`** — creates a component owned by an account.
+**`COMPONENT_INSERT`** — creates one or more components owned by an account.
+
+Single-component overload:
 
 | Parameter | Type      |
 | --------- | --------- |
@@ -404,6 +424,20 @@ Errors: `50001`, `50004`, `50006`.
 | `p_owner` | `TYPE_ID` |
 
 Returns: `TYPE_ID` — the new component id (`COMP...`).
+
+Batch overload:
+
+| Parameter | Type        |
+| --------- | ----------- |
+| `p_text`  | `TEXT[]`    |
+| `p_owner` | `TYPE_ID`   |
+
+Returns a table of the component ids of every component created (or already
+existing with the same text):
+
+| Column          | Type      |
+| --------------- | --------- |
+| `component_id`  | `TYPE_ID` |
 
 Errors: `50001`, `50004`, `50006`.
 

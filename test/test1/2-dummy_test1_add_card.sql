@@ -1,779 +1,315 @@
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('achieve', 1),
-          FN_COMPONENT_INSERT (
+-- Create all components (front + back) for account 1 in one batch.
+SELECT    component_id
+FROM      COMPONENT_INSERT (
+          ARRAY[
+          'achieve',
           'To successfully reach a goal after working for it.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('advice', 1),
-          FN_COMPONENT_INSERT (
+          'advice',
           'An opinion or suggestion about what someone should do.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('afford', 1)                                    ,
-          FN_COMPONENT_INSERT ('To have enough money to pay for something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('allow', 1),
-          FN_COMPONENT_INSERT (
+          'afford',
+          'To have enough money to pay for something.',
+          'allow',
           'To let someone do something or let something happen.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('ancient', 1),
-          FN_COMPONENT_INSERT (
+          'ancient',
           'Very old, especially from a long time in history.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('announce', 1)                                  ,
-          FN_COMPONENT_INSERT ('To officially tell people about something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('argue', 1),
-          FN_COMPONENT_INSERT (
+          'announce',
+          'To officially tell people about something.',
+          'argue',
           'To disagree with someone and speak angrily about it.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('arrange', 1)                       ,
-          FN_COMPONENT_INSERT ('To organize or plan something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('attend', 1)                                      ,
-          FN_COMPONENT_INSERT ('To go to an event, meeting, class, or place.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('avoid', 1)                                  ,
-          FN_COMPONENT_INSERT ('To stay away from someone or something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('behavior', 1)                        ,
-          FN_COMPONENT_INSERT ('The way a person or animal acts.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('belong', 1),
-          FN_COMPONENT_INSERT (
+          'arrange',
+          'To organize or plan something.',
+          'attend',
+          'To go to an event, meeting, class, or place.',
+          'avoid',
+          'To stay away from someone or something.',
+          'behavior',
+          'The way a person or animal acts.',
+          'belong',
           'To be owned by someone or to be part of a group.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('benefit', 1),
-          FN_COMPONENT_INSERT (
+          'benefit',
           'A good result or advantage that something provides.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('challenge', 1),
-          FN_COMPONENT_INSERT (
+          'challenge',
           'Something difficult that tests your ability or skill.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('choice', 1),
-          FN_COMPONENT_INSERT (
+          'choice',
           'A decision between two or more possibilities.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('communicate', 1),
-          FN_COMPONENT_INSERT (
+          'communicate',
           'To share information, ideas, or feelings with someone.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('compare', 1),
-          FN_COMPONENT_INSERT (
+          'compare',
           'To examine two or more things to see how they are similar or different.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('complain', 1),
-          FN_COMPONENT_INSERT (
+          'complain',
           'To say that you are unhappy or dissatisfied about something.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('concentrate', 1)                             ,
-          FN_COMPONENT_INSERT ('To give all your attention to something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('confident', 1),
-          FN_COMPONENT_INSERT (
+          'concentrate',
+          'To give all your attention to something.',
+          'confident',
           'Feeling sure about your abilities or yourself.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('connect', 1)                                     ,
-          FN_COMPONENT_INSERT ('To join or link two or more things together.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('consider', 1),
-          FN_COMPONENT_INSERT (
+          'connect',
+          'To join or link two or more things together.',
+          'consider',
           'To think carefully about something before making a decision.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('contain', 1),
-          FN_COMPONENT_INSERT (
+          'contain',
           'To have something inside or as part of something.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('continue', 1)                                 ,
-          FN_COMPONENT_INSERT ('To keep doing something without stopping.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('create', 1)                ,
-          FN_COMPONENT_INSERT ('To make something new.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('curious', 1)                                  ,
-          FN_COMPONENT_INSERT ('Wanting to know or learn about something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('decision', 1),
-          FN_COMPONENT_INSERT (
+          'continue',
+          'To keep doing something without stopping.',
+          'create',
+          'To make something new.',
+          'curious',
+          'Wanting to know or learn about something.',
+          'decision',
           'A choice that you make after thinking about something.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('depend', 1),
-          FN_COMPONENT_INSERT (
+          'depend',
           'To need someone or something for support or help.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('describe', 1),
-          FN_COMPONENT_INSERT (
+          'describe',
           'To say or write what someone or something is like.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('develop', 1)                                   ,
-          FN_COMPONENT_INSERT ('To grow, improve, or become more advanced.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('difference', 1),
-          FN_COMPONENT_INSERT (
+          'develop',
+          'To grow, improve, or become more advanced.',
+          'difference',
           'The way in which two or more things are not the same.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('discuss', 1),
-          FN_COMPONENT_INSERT (
+          'discuss',
           'To talk about something with another person or group.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('effective', 1),
-          FN_COMPONENT_INSERT (
+          'effective',
           'Producing the result that is wanted or expected.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('environment', 1),
-          FN_COMPONENT_INSERT (
+          'environment',
           'The natural world or the place where people, animals, or plants live.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('especially', 1)                                ,
-          FN_COMPONENT_INSERT ('More than usual or more than other things.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('experience', 1),
-          FN_COMPONENT_INSERT (
+          'especially',
+          'More than usual or more than other things.',
+          'experience',
           'Knowledge or skill gained by doing or seeing something.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('familiar', 1),
-          FN_COMPONENT_INSERT (
+          'familiar',
           'Known or recognized because you have seen or experienced it before.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('improve', 1)                                   ,
-          FN_COMPONENT_INSERT ('To become better or make something better.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('include', 1),
-          FN_COMPONENT_INSERT (
+          'improve',
+          'To become better or make something better.',
+          'include',
           'To have something as part of a group or whole.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('increase', 1)                                    ,
-          FN_COMPONENT_INSERT ('To become larger in amount, number, or size.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('influence', 1)                                ,
-          FN_COMPONENT_INSERT ('The power to affect someone or something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('instead', 1)                               ,
-          FN_COMPONENT_INSERT ('In place of someone or something else.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('involve', 1),
-          FN_COMPONENT_INSERT (
+          'increase',
+          'To become larger in amount, number, or size.',
+          'influence',
+          'The power to affect someone or something.',
+          'instead',
+          'In place of someone or something else.',
+          'involve',
           'To include someone or something in an activity or situation.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('knowledge', 1),
-          FN_COMPONENT_INSERT (
+          'knowledge',
           'Information and understanding gained through learning or experience.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('local', 1),
-          FN_COMPONENT_INSERT (
+          'local',
           'Related to a particular area, town, or community.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('manage', 1),
-          FN_COMPONENT_INSERT (
+          'manage',
           'To succeed in doing something, especially something difficult.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('necessary', 1)                                  ,
-          FN_COMPONENT_INSERT ('Needed in order to do or achieve something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('opportunity', 1)                              ,
-          FN_COMPONENT_INSERT ('A good chance to do or achieve something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('ordinary', 1)                                ,
-          FN_COMPONENT_INSERT ('Normal or usual, not special or unusual.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('patient', 1),
-          FN_COMPONENT_INSERT (
+          'necessary',
+          'Needed in order to do or achieve something.',
+          'opportunity',
+          'A good chance to do or achieve something.',
+          'ordinary',
+          'Normal or usual, not special or unusual.',
+          'patient',
           'Able to wait calmly without becoming angry or upset.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('perform', 1)                                   ,
-          FN_COMPONENT_INSERT ('To do an activity, task, or piece of work.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('perhaps', 1)         ,
-          FN_COMPONENT_INSERT ('Possibly; maybe.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('prevent', 1)                          ,
-          FN_COMPONENT_INSERT ('To stop something from happening.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('probably', 1),
-          FN_COMPONENT_INSERT (
+          'perform',
+          'To do an activity, task, or piece of work.',
+          'perhaps',
+          'Possibly; maybe.',
+          'prevent',
+          'To stop something from happening.',
+          'probably',
           'Used to say that something is likely to happen or be true.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('produce', 1)                            ,
-          FN_COMPONENT_INSERT ('To make, grow, or create something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('protect', 1),
-          FN_COMPONENT_INSERT (
+          'produce',
+          'To make, grow, or create something.',
+          'protect',
           'To keep someone or something safe from harm or danger.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('realize', 1)                                    ,
-          FN_COMPONENT_INSERT ('To understand or become aware of something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('receive', 1),
-          FN_COMPONENT_INSERT (
+          'realize',
+          'To understand or become aware of something.',
+          'receive',
           'To get something that someone gives or sends you.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('recommend', 1),
-          FN_COMPONENT_INSERT (
+          'recommend',
           'To suggest that someone should do or choose something.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('reduce', 1)                            ,
-          FN_COMPONENT_INSERT ('To make something smaller or less.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('relationship', 1),
-          FN_COMPONENT_INSERT (
+          'reduce',
+          'To make something smaller or less.',
+          'relationship',
           'The connection between two or more people or things.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('remain', 1)                                 ,
-          FN_COMPONENT_INSERT ('To stay in the same place or situation.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('replace', 1),
-          FN_COMPONENT_INSERT (
+          'remain',
+          'To stay in the same place or situation.',
+          'replace',
           'To take the place of someone or something else.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('require', 1)                                    ,
-          FN_COMPONENT_INSERT ('To need something for a particular purpose.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('research', 1),
-          FN_COMPONENT_INSERT (
+          'require',
+          'To need something for a particular purpose.',
+          'research',
           'A careful study of a subject to discover new information.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('responsible', 1),
-          FN_COMPONENT_INSERT (
+          'responsible',
           'Having a duty to deal with something or someone.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('result', 1),
-          FN_COMPONENT_INSERT (
+          'result',
           'Something that happens because of an action or event.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('suggest', 1),
-          FN_COMPONENT_INSERT (
+          'suggest',
           'To give an idea or possibility for someone to consider.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('support', 1),
-          FN_COMPONENT_INSERT (
+          'support',
           'To help someone or something succeed or continue.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('survive', 1),
-          FN_COMPONENT_INSERT (
+          'survive',
           'To continue to live or exist despite difficulty or danger.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('temporary', 1),
-          FN_COMPONENT_INSERT (
+          'temporary',
           'Existing or happening for only a limited period of time.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('traditional', 1),
-          FN_COMPONENT_INSERT (
+          'traditional',
           'Following the customs or ways of behaving of a particular group or society.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('typical', 1),
-          FN_COMPONENT_INSERT (
+          'typical',
           'Having the usual qualities or characteristics of something.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('unfortunately', 1),
-          FN_COMPONENT_INSERT (
+          'unfortunately',
           'Used when something bad or disappointing has happened.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('valuable', 1),
-          FN_COMPONENT_INSERT (
+          'valuable',
           'Worth a lot of money or very useful or important.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('variety', 1),
-          FN_COMPONENT_INSERT (
+          'variety',
           'A number of different types of things or people.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('wonder', 1),
-          FN_COMPONENT_INSERT (
+          'wonder',
           'To think about something because you want to know more about it.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('accept', 1)                                ,
-          FN_COMPONENT_INSERT ('To agree to take or receive something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('active', 1),
-          FN_COMPONENT_INSERT (
+          'accept',
+          'To agree to take or receive something.',
+          'active',
           'Doing things regularly or being involved in activities.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('average', 1)                                     ,
-          FN_COMPONENT_INSERT ('Typical or normal when compared with others.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('career', 1),
-          FN_COMPONENT_INSERT (
+          'average',
+          'Typical or normal when compared with others.',
+          'career',
           'The series of jobs and experiences someone has during their working life.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('certain', 1)                                 ,
-          FN_COMPONENT_INSERT ('Sure or having no doubt about something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('contact', 1),
-          FN_COMPONENT_INSERT (
+          'certain',
+          'Sure or having no doubt about something.',
+          'contact',
           'To communicate with someone by phone, email, message, or another method.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('convenient', 1),
-          FN_COMPONENT_INSERT (
+          'convenient',
           'Easy and suitable for a particular situation.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('crowded', 1)                                   ,
-          FN_COMPONENT_INSERT ('Full of people, leaving little free space.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('damage', 1)                            ,
-          FN_COMPONENT_INSERT ('Physical harm caused to something.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('discover', 1),
-          FN_COMPONENT_INSERT (
+          'crowded',
+          'Full of people, leaving little free space.',
+          'damage',
+          'Physical harm caused to something.',
+          'discover',
           'To find something or learn something for the first time.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('education', 1),
-          FN_COMPONENT_INSERT (
+          'education',
           'The process of learning, especially at school or university.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('expensive', 1)              ,
-          FN_COMPONENT_INSERT ('Costing a lot of money.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('fortunately', 1)                           ,
-          FN_COMPONENT_INSERT ('Used when something good has happened.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('generous', 1),
-          FN_COMPONENT_INSERT (
+          'expensive',
+          'Costing a lot of money.',
+          'fortunately',
+          'Used when something good has happened.',
+          'generous',
           'Willing to give money, time, or help to others.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('independent', 1),
-          FN_COMPONENT_INSERT (
+          'independent',
           'Able to do things without needing help from others.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('likely', 1)                                    ,
-          FN_COMPONENT_INSERT ('Probably going to happen or probably true.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('polite', 1),
-          FN_COMPONENT_INSERT (
+          'likely',
+          'Probably going to happen or probably true.',
+          'polite',
           'Having good manners and showing respect to others.',
-          1
-          ),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('prefer', 1)                              ,
-          FN_COMPONENT_INSERT ('To like one thing more than another.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('recent', 1)                             ,
-          FN_COMPONENT_INSERT ('Happening or existing not long ago.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('similar', 1)                                   ,
-          FN_COMPONENT_INSERT ('Almost the same, but not exactly the same.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('successful', 1),
-          FN_COMPONENT_INSERT (
+          'prefer',
+          'To like one thing more than another.',
+          'recent',
+          'Happening or existing not long ago.',
+          'similar',
+          'Almost the same, but not exactly the same.',
+          'successful',
           'Achieving the result or goal that you wanted.',
-          1
-          ),
-          1
+          'unusual',
+          'Different from what is normal or expected.',
+          'useful',
+          'Helpful or practical for a particular purpose.'
+          ]::TEXT[],
+          FN_ACCOUNT_ID (1)
           );
 
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('unusual', 1)                                   ,
-          FN_COMPONENT_INSERT ('Different from what is normal or expected.', 1),
-          1
-          );
-
-SELECT    FN_CARD_INSERT (
-          FN_COMPONENT_INSERT ('useful', 1),
-          FN_COMPONENT_INSERT (
-          'Helpful or practical for a particular purpose.',
-          1
-          ),
-          1
+-- Create all 100 cards for account 1 in one batch.
+SELECT    card_id
+FROM      CARD_INSERT (
+          ARRAY[
+          ROW ('COMP00000000001', 'COMP00000000002')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000003', 'COMP00000000004')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000005', 'COMP00000000006')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000007', 'COMP00000000008')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000009', 'COMP00000000010')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000011', 'COMP00000000012')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000013', 'COMP00000000014')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000015', 'COMP00000000016')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000017', 'COMP00000000018')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000019', 'COMP00000000020')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000021', 'COMP00000000022')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000023', 'COMP00000000024')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000025', 'COMP00000000026')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000027', 'COMP00000000028')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000029', 'COMP00000000030')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000031', 'COMP00000000032')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000033', 'COMP00000000034')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000035', 'COMP00000000036')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000037', 'COMP00000000038')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000039', 'COMP00000000040')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000041', 'COMP00000000042')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000043', 'COMP00000000044')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000045', 'COMP00000000046')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000047', 'COMP00000000048')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000049', 'COMP00000000050')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000051', 'COMP00000000052')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000053', 'COMP00000000054')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000055', 'COMP00000000056')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000057', 'COMP00000000058')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000059', 'COMP00000000060')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000061', 'COMP00000000062')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000063', 'COMP00000000064')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000065', 'COMP00000000066')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000067', 'COMP00000000068')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000069', 'COMP00000000070')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000071', 'COMP00000000072')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000073', 'COMP00000000074')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000075', 'COMP00000000076')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000077', 'COMP00000000078')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000079', 'COMP00000000080')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000081', 'COMP00000000082')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000083', 'COMP00000000084')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000085', 'COMP00000000086')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000087', 'COMP00000000088')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000089', 'COMP00000000090')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000091', 'COMP00000000092')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000093', 'COMP00000000094')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000095', 'COMP00000000096')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000097', 'COMP00000000098')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000099', 'COMP00000000100')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000101', 'COMP00000000102')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000103', 'COMP00000000104')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000105', 'COMP00000000106')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000107', 'COMP00000000108')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000109', 'COMP00000000110')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000111', 'COMP00000000112')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000113', 'COMP00000000114')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000115', 'COMP00000000116')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000117', 'COMP00000000118')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000119', 'COMP00000000120')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000121', 'COMP00000000122')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000123', 'COMP00000000124')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000125', 'COMP00000000126')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000127', 'COMP00000000128')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000129', 'COMP00000000130')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000131', 'COMP00000000132')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000133', 'COMP00000000134')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000135', 'COMP00000000136')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000137', 'COMP00000000138')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000139', 'COMP00000000140')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000141', 'COMP00000000142')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000143', 'COMP00000000144')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000145', 'COMP00000000146')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000147', 'COMP00000000148')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000149', 'COMP00000000150')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000151', 'COMP00000000152')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000153', 'COMP00000000154')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000155', 'COMP00000000156')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000157', 'COMP00000000158')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000159', 'COMP00000000160')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000161', 'COMP00000000162')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000163', 'COMP00000000164')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000165', 'COMP00000000166')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000167', 'COMP00000000168')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000169', 'COMP00000000170')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000171', 'COMP00000000172')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000173', 'COMP00000000174')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000175', 'COMP00000000176')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000177', 'COMP00000000178')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000179', 'COMP00000000180')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000181', 'COMP00000000182')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000183', 'COMP00000000184')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000185', 'COMP00000000186')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000187', 'COMP00000000188')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000189', 'COMP00000000190')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000191', 'COMP00000000192')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000193', 'COMP00000000194')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000195', 'COMP00000000196')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000197', 'COMP00000000198')::TYPE_CARD_INSERT,
+          ROW ('COMP00000000199', 'COMP00000000200')::TYPE_CARD_INSERT
+          ]::TYPE_CARD_INSERT[],
+          FN_ACCOUNT_ID (1)
           );

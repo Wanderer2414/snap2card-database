@@ -13,6 +13,7 @@
 ./schema/definitions/level.sql
 ./schema/definitions/status.sql
 ./schema/definitions/phone.sql
+./schema/definitions/card.sql
 
 ./schema/functions/support/id.sql
 

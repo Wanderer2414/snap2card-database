@@ -1,1 +1,1 @@
-CREATE    TYPE TYPE_FILE_TYPE AS ENUM('pdf');
+CREATE    TYPE TYPE_FILE_TYPE AS ENUM('pdf', 'png', 'jpg', 'bmp', 'ico', 'webp')

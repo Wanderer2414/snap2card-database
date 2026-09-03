@@ -17,13 +17,13 @@
 ./schema/tables/account.sql
 ./schema/tables/component.sql
 ./schema/tables/card.sql
+./schema/tables/category.sql
 ./schema/tables/quiz.sql
 ./schema/tables/exam.sql
 ./schema/tables/session.sql
 ./schema/tables/exam_log.sql
 ./schema/tables/request_log.sql
 ./schema/tables/account_card_have.sql
-./schema/tables/category.sql
 ./schema/tables/account_category_have.sql
 
 ./schema/grant/account.sql

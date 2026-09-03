@@ -1,2 +1,2 @@
-SELECT    *
-FROM      FN_EXAM_CREATE (1);
+-- SELECT    *
+-- FROM      FN_EXAM_CREATE (1);

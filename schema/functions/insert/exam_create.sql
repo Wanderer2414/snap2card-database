@@ -29,7 +29,7 @@ BEGIN
     INSERT INTO EXAM(exam_level, total_score) VALUES ('EASY', NULL)
     RETURNING exam_id INTO v_exam_id;
 
-    INSERT INTO EXAM_CATEGORY_RELATED(exam_id, category_id) VALUES (v_exam_id, p_category_id) ON CONFLICT (v_exam_id, p_category_id) DO NOTHING;
+    INSERT INTO EXAM_CATEGORY_RELATED(exam_id, category_id) VALUES (v_exam_id, p_category_id) ON CONFLICT (exam_id, category_id) DO NOTHING;
 
     INSERT INTO EXAM_QUIZ 
     SELECT v_exam_id, C.quiz_id FROM REVIEW_QUIZ C

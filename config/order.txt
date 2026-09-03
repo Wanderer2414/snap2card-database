@@ -1,3 +1,5 @@
+./schema/definitions/file.sql
+
 ./schema/functions/support/support.sql
 ./schema/functions/support/gmt.sql
 
@@ -11,7 +13,6 @@
 ./schema/definitions/level.sql
 ./schema/definitions/status.sql
 ./schema/definitions/phone.sql
-./schema/definitions/file.sql
 
 ./schema/functions/support/id.sql
 

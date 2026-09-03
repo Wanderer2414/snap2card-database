@@ -1,19 +1,26 @@
--- CREATE    TABLE FILE (
---           file_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---           file_source TEXT NOT NULL                            ,
---           owner_id INT NOT NULL                                ,
---           file_type TYPE_FILE_TYPE NOT NULL                    ,
---           date_created TIMESTAMPTZ DEFAULT NOW()               ,
---           FOREIGN KEY (owner_id) REFERENCES ACCOUNT (account_id)
---           );
 CREATE
-OR        REPLACE FUNCTION FN_FILE_INSERT (p_file_source TEXT, p_file_type TYPE_FILE_TYPE, p_owner_id INT) RETURNS INT AS $$
-DECLARE 
-    v_id INT;
+OR        REPLACE FUNCTION FN_FILE_INSERT (
+          p_file_name TYPE_NAME_FILE,
+          p_hash_code CHAR(64)      ,
+          p_file_type TYPE_FILE_TYPE,
+          p_owner_id INT
+          ) RETURNS TABLE (out_file_id INT, out_file_source TEXT) LANGUAGE plpgsql AS $$
 BEGIN
-    INSERT INTO FILE(file_source, file_type, owner_id) VALUES (p_file_source, p_file_type, p_owner_id)
-    RETURNING file_id INTO v_id;
+    INSERT INTO FILE (file_name, hash_code, file_type, owner_id)
+    VALUES (p_file_name, p_hash_code, p_file_type, p_owner_id)
+    ON CONFLICT (file_name, hash_code)
+    DO NOTHING
+    RETURNING file_id, file_source
+    INTO out_file_id, out_file_source;
 
-    RETURN v_id;
+    IF NOT FOUND THEN
+        SELECT f.file_id, f.file_source
+        INTO out_file_id, out_file_source
+        FROM file AS f
+        WHERE f.file_name = p_file_name
+          AND f.hash_code = p_hash_code;
+    END IF;
+
+    RETURN NEXT;
 END;
-$$ LANGUAGE plpgsql;
+$$;

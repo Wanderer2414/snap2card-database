@@ -240,6 +240,7 @@ Returns a table:
 | `category_name`| `TYPE_NAME_CATEGORY` |
 | `numOfCard`    | `INT`            |
 | `card_ids`     | `TYPE_ID[]`      |
+| `mastery`      | `FLOAT`          |
 | `YEAR`         | `INTEGER`        |
 | `MONTH`        | `INTEGER`        |
 | `DAY`          | `INTEGER`        |
@@ -247,6 +248,13 @@ Returns a table:
 | `MINUTE`       | `INTEGER`        |
 | `SECOND`       | `INTEGER`        |
 | `gmt`          | `CHAR(3)`        |
+
+`mastery` is the category mastery, expressed as the average of the mastery of
+each card in the category: `sum(card_mastery) / numOfCard`. Each card's mastery
+is the ratio `true_count / false_count` of its `ACCOUNT_CARD_HAVE` counters for
+the given account (literal ratio; not bounded to 0-100). `false_count` can never
+be 0 because `ACCOUNT_CARD_HAVE` enforces `CHECK (false_count >= 3)`. A category
+with no cards returns `NULL` mastery.
 
 Errors: `50001`, `50006`.
 

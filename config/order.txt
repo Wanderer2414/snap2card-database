@@ -49,6 +49,7 @@
 ./schema/functions/retrieve/category_retrieve.sql
 ./schema/functions/retrieve/category_list.sql
 ./schema/functions/retrieve/component_retrieve.sql
+./schema/functions/retrieve/file_retrieve.sql
 ./schema/functions/retrieve/exam_retrieve.sql
 ./schema/functions/retrieve/category_log_related.sql
 
@@ -77,6 +78,7 @@
 ./protocols/category_log_related.sql
 ./protocols/component_insert.sql
 ./protocols/file_insert.sql
+./protocols/file_retrieve.sql
 ./protocols/component_retrieve.sql
 ./protocols/request_log_insert.sql
 ./protocols/session_check.sql

@@ -11,6 +11,7 @@
 ./schema/definitions/level.sql
 ./schema/definitions/status.sql
 ./schema/definitions/phone.sql
+./schema/definitions/file.sql
 
 ./schema/functions/support/id.sql
 
@@ -18,6 +19,7 @@
 ./schema/tables/component.sql
 ./schema/tables/card.sql
 ./schema/tables/category.sql
+./schema/tables/file.sql
 ./schema/tables/quiz.sql
 ./schema/tables/exam.sql
 ./schema/tables/session.sql
@@ -34,6 +36,7 @@
 ./schema/functions/insert/component_insert.sql
 ./schema/functions/insert/card_insert.sql
 ./schema/functions/insert/category_insert.sql
+./schema/functions/insert/file_insert.sql
 ./schema/functions/insert/exam_create.sql
 ./schema/functions/insert/exam_start.sql
 ./schema/functions/update/session_check.sql
@@ -70,6 +73,7 @@
 ./protocols/categorize.sql
 ./protocols/category_log_related.sql
 ./protocols/component_insert.sql
+./protocols/file_insert.sql
 ./protocols/component_retrieve.sql
 ./protocols/request_log_insert.sql
 ./protocols/session_check.sql

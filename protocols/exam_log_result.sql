@@ -35,6 +35,10 @@ BEGIN
         RAISE EXCEPTION 'exam log not found' USING ERRCODE = '50004';
     END IF;
 
+    IF EXISTS (SELECT 1 FROM EXAM_LOG WHERE log_id = FN_ID_LOG(p_exam_log_id) AND end_time IS NOT NULL) THEN
+        RAISE EXCEPTION 'exam log is already completed' USING ERRCODE = '50003';
+    END IF;
+
     IF NOT EXISTS (SELECT 1 FROM QUIZ WHERE quiz_id = FN_ID_QUIZ(p_quiz_id)) THEN
         RAISE EXCEPTION 'quiz not found' USING ERRCODE = '50004';
     END IF;

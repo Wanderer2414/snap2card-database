@@ -51,6 +51,7 @@
 ./schema/functions/retrieve/card_retrieve.sql
 ./schema/functions/retrieve/category_retrieve.sql
 ./schema/functions/retrieve/category_list.sql
+./schema/functions/retrieve/category_not_have_card.sql
 ./schema/functions/retrieve/recent_category_take_list.sql
 ./schema/functions/retrieve/component_retrieve.sql
 ./schema/functions/retrieve/file_retrieve.sql
@@ -62,12 +63,17 @@
 ./schema/functions/update/account_logout.sql
 ./schema/functions/update/exam_complete.sql
 
+./schema/functions/delete/card_delete.sql
+./schema/functions/delete/category_delete.sql
+
 
 ./schema/index/common.sql
 ./schema/triggers/update/category_update_time.sql
 ./schema/triggers/update/category_num_of_card.sql
 ./schema/triggers/update/category_card_follow_mastery.sql
 ./schema/triggers/update/account_category_follow_mastery.sql
+./schema/triggers/update/category_mastery_have_del.sql
+./schema/triggers/update/category_mastery_contain_del.sql
 
 ./protocols/account_login.sql
 ./protocols/account_insert.sql
@@ -83,12 +89,15 @@
 ./protocols/category_list.sql
 ./protocols/recent_category_take_list.sql
 ./protocols/category_retrieve.sql
+./protocols/category_not_have_card.sql
 ./protocols/categorize.sql
 ./protocols/category_log_related.sql
 ./protocols/component_insert.sql
 ./protocols/file_insert.sql
 ./protocols/file_retrieve.sql
 ./protocols/component_retrieve.sql
+./protocols/card_delete.sql
+./protocols/category_delete.sql
 ./protocols/request_log_insert.sql
 ./protocols/session_check.sql
 ./protocols/exam_create.sql

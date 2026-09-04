@@ -37,12 +37,26 @@ END;
 $$ LANGUAGE plpgsql;
 
 CREATE
-OR        REPLACE FUNCTION FN_CARD_INSERT (p_cards __TYPE_CARD_INSERT[], p_owner INT) RETURNS TABLE (card_id INT) AS $$
+OR        REPLACE FUNCTION FN_CARD_INSERT (p_cards TYPE_CARD_INSERT_INTERNAL[], p_owner INT) RETURNS TABLE (card_id INT) AS $$
 BEGIN
     RETURN QUERY
-    INSERT INTO CARD(frontSide_id, backSide_id, creator_id)
-    SELECT C.front_id, C.back_id, p_owner FROM unnest(p_cards) AS C(front_id, back_id)
-    ON CONFLICT (frontSide_id, backSide_id) DO UPDATE SET creator_id = EXCLUDED.creator_id
-    RETURNING CARD.card_id;
+    WITH card_ids AS (
+        INSERT INTO CARD(frontSide_id, backSide_id, creator_id)
+        SELECT C.front_id, C.back_id, p_owner FROM unnest(p_cards) AS C(front_id, back_id)
+        ON CONFLICT (frontSide_id, backSide_id) DO UPDATE SET creator_id = EXCLUDED.creator_id
+        RETURNING CARD.card_id
+    )                    ,
+    inserted_ids AS (
+        INSERT INTO ACCOUNT_CARD_HAVE(account_id, card_id) 
+        SELECT p_owner, C.card_id FROM card_ids C
+        ON CONFLICT DO NOTHING
+        RETURNING ACCOUNT_CARD_HAVE.card_id
+    )               ,
+    conflict_ids AS (
+        SELECT ACH.card_id FROM ACCOUNT_CARD_HAVE AS ACH WHERE (ACH.card_id IN (SELECT * FROM card_ids)) AND (ACH.account_id = p_owner)
+    )
+    SELECT * FROM inserted_ids
+    UNION ALL
+    SELECT * FROM conflict_ids;
 END;
 $$ LANGUAGE plpgsql;

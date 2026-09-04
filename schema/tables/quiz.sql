@@ -7,8 +7,8 @@ CREATE    TABLE QUIZ (
 
 -- DROP      TABLE QUIZ CASCADE;
 CREATE    TABLE REVIEW_QUIZ (
-          quiz_id INT PRIMARY KEY REFERENCES QUIZ (quiz_id),
-          card_id INT REFERENCES CARD (card_id)
+          quiz_id INT PRIMARY KEY REFERENCES QUIZ (quiz_id)     ,
+          card_id INT REFERENCES CARD (card_id) ON DELETE CASCADE
           );
 
 -- DROP      TABLE REVIEW_QUIZ;

@@ -7,8 +7,8 @@ CREATE    TABLE EXAM (
           );
 
 CREATE    TABLE EXAM_CATEGORY_RELATED (
-          exam_id INT REFERENCES EXAM (exam_id)            ,
-          category_id INT REFERENCES CATEGORY (category_id),
+          exam_id INT REFERENCES EXAM (exam_id)                              ,
+          category_id INT REFERENCES CATEGORY (category_id) ON DELETE CASCADE,
           PRIMARY KEY (exam_id, category_id)
           );
 

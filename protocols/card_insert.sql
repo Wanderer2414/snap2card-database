@@ -107,7 +107,7 @@ BEGIN
 
     RETURN QUERY
     SELECT FN_CARD_ID(i.card_id) FROM FN_CARD_INSERT(
-        (SELECT array_agg(ROW(FN_ID_COMPONENT(front), FN_ID_COMPONENT(back))::__TYPE_CARD_INSERT) FROM unnest(p_cards) AS X(front, back))
+        (SELECT array_agg(ROW(FN_ID_COMPONENT(front), FN_ID_COMPONENT(back))::TYPE_CARD_INSERT_INTERNAL) FROM unnest(p_cards) AS X(front, back))
     , v_owner) AS i;
 END
 $$ LANGUAGE plpgsql;

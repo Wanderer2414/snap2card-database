@@ -210,6 +210,29 @@ Errors: `50001`, `50006`.
 
 ---
 
+**`CARD_DELETE`** — removes a card, or just un-owns it if the account is not its
+creator.
+
+| Parameter      | Type      |
+| -------------- | --------- |
+| `p_account_id` | `TYPE_ID` |
+| `p_card_id`    | `TYPE_ID` |
+
+Behavior depends on the account's relationship to the card:
+
+- If the account **created** the card (`CARD.creator_id`), the card is deleted
+  entirely: its `ACCOUNT_CARD_HAVE` rows, `CATEGORY_CARD_CONTAIN` links, review
+  quizzes (and their `QUIZ`, `EXAM_QUIZ`, `QUES4A_QUIZ`/`FILLBLANK_QUIZ`, and
+  `EXAM_LOG_REVIEW_RESULT` rows) are removed. The mastery of the account's
+  followed categories that contained the card is recomputed.
+- Otherwise the account only **un-haves** it: just this account's
+  `ACCOUNT_CARD_HAVE` row is removed, and the mastery of the account's followed
+  categories that contained the card is recomputed; the card itself is kept.
+
+Returns: `void`. Errors: `50001`, `50004`, `50006`.
+
+---
+
 ### Categories
 
 **`CATEGORY_INSERT`** — creates a category owned by an account, or returns the
@@ -371,6 +394,50 @@ empty result. `mastery` is read directly from `ACCOUNT_CATEGORY_FOLLOW.mastery_s
 recomputed here.
 
 Errors: `50001`, `50006`.
+
+---
+
+**`CATEGORY_NOT_HAVE_CARD`** — lists the categories **owned by** the account
+(`CATEGORY.owner_id`) that a given card does **not** belong to (the categories
+still "available" for that card).
+
+| Parameter      | Type      |
+| -------------- | --------- |
+| `p_account_id` | `TYPE_ID` |
+| `p_card_id`    | `TYPE_ID` |
+
+Returns a table:
+
+| Column          | Type                |
+| --------------- | ------------------- |
+| `category_id`   | `TYPE_ID`           |
+| `category_name` | `TYPE_NAME_CATEGORY`|
+
+The result is the account's **owned** categories (via `CATEGORY.owner_id`) minus any
+containing the given card in `CATEGORY_CARD_CONTAIN`.
+
+Errors: `50001`, `50004`, `50006`.
+
+---
+
+**`CATEGORY_DELETE`** — removes a category, or just unfollows it if the account is
+not its owner.
+
+| Parameter      | Type      |
+| -------------- | --------- |
+| `p_account_id` | `TYPE_ID` |
+| `p_category_id`| `TYPE_ID` |
+
+Behavior depends on the account's relationship to the category:
+
+- If the account **owns** the category (`CATEGORY.owner_id`), the category is
+  deleted entirely: its `CATEGORY_CARD_CONTAIN` links, every account's
+  `ACCOUNT_CATEGORY_FOLLOW` row, and its `EXAM_CATEGORY_RELATED` links are
+  removed. The linked `EXAM` rows themselves are kept.
+- Otherwise the account only **unfollows** it: just this account's
+  `ACCOUNT_CATEGORY_FOLLOW` row is removed; the category and its exams are kept.
+
+Returns: `void`. Errors: `50001`, `50004`, `50006`.
 
 ---
 

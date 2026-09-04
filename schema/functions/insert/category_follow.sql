@@ -13,7 +13,7 @@ BEGIN
 
     UPDATE ACCOUNT_CATEGORY_FOLLOW ACF
     SET mastery_score = (
-        SELECT AVG(ACH.true_count::float / ACH.false_count)
+        SELECT AVG(ACH.true_count::float / (3 * ACH.false_count))
         FROM ACCOUNT_CARD_HAVE ACH
         WHERE ACH.account_id = p_owner
           AND ACH.card_id IN (SELECT X.card_id FROM CATEGORY_CARD_CONTAIN X WHERE X.category_id = p_category_id)

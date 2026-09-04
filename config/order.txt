@@ -30,6 +30,7 @@
 ./schema/tables/account_card_have.sql
 ./schema/tables/account_category_have.sql
 ./schema/tables/account_category_follow.sql
+./schema/tables/daily_log.sql
 
 ./schema/grant/account.sql
 
@@ -57,6 +58,7 @@
 ./schema/functions/retrieve/file_retrieve.sql
 ./schema/functions/retrieve/exam_retrieve.sql
 ./schema/functions/retrieve/category_log_related.sql
+./schema/functions/retrieve/daily_learning.sql
 
 ./schema/functions/insert/categorize.sql
 ./schema/functions/insert/exam_log_result.sql
@@ -105,3 +107,5 @@
 ./protocols/exam_retrieve.sql
 ./protocols/exam_log_result.sql
 ./protocols/exam_complete.sql
+./protocols/daily_learned_count.sql
+./protocols/monthly_learned_count.sql

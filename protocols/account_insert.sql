@@ -31,5 +31,8 @@ BEGIN
     END IF;
 
     RETURN FN_ACCOUNT_ID(FN_ACCOUNT_INSERT(p_name, p_email, p_phone, p_password));
+EXCEPTION
+    WHEN unique_violation THEN
+        RAISE EXCEPTION 'email already exists' USING ERRCODE = '50003';
 END
 $$ LANGUAGE plpgsql;

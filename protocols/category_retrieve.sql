@@ -31,14 +31,14 @@ OR        REPLACE FUNCTION CATEGORY_RETRIEVE (p_account_id TYPE_ID, p_id TYPE_ID
 
             RETURN QUERY 
             SELECT C.category_name, C.numOfCard, 
-                  (SELECT array_agg(FN_CARD_ID(CID.card_id)) FROM unnest(C.card_ids) as CID(card_id)) AS card_ids,
-                  C.mastery,
-                  (FN_GET_GMT(C.date_created)).YEAR,
-                  (FN_GET_GMT(C.date_created)).MONTH,
-                  (FN_GET_GMT(C.date_created)).DAY,
-                  (FN_GET_GMT(C.date_created)).HOUR,
-                  (FN_GET_GMT(C.date_created)).MINUTE,
-                  (FN_GET_GMT(C.date_created)).SECOND,
+                  CASE WHEN (SELECT array_agg(FN_CARD_ID(CID.card_id)) FROM unnest(C.card_ids) as CID(card_id)) AS card_ids,
+                  C.mastery                                                                                                ,
+                  (FN_GET_GMT(C.date_created)).YEAR                                                                        ,
+                  (FN_GET_GMT(C.date_created)).MONTH                                                                       ,
+                  (FN_GET_GMT(C.date_created)).DAY                                                                         ,
+                  (FN_GET_GMT(C.date_created)).HOUR                                                                        ,
+                  (FN_GET_GMT(C.date_created)).MINUTE                                                                      ,
+                  (FN_GET_GMT(C.date_created)).SECOND                                                                      ,
                   (FN_GET_GMT(C.date_created)).gmt 
             FROM FN_CATEGORY_RETRIEVE(FN_ID_ACCOUNT(p_account_id), FN_ID_CATEGORY(p_id)) C;
           END

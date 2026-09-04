@@ -8,16 +8,15 @@ OR        REPLACE FUNCTION FN_CATEGORY_RETRIEVE (p_owner INT, p_category_id INT)
           ) AS $$
           BEGIN
             RETURN QUERY 
-            SELECT    C.category_name, C.numOfCard,
-                      array_agg(DISTINCT ACH.card_id),
-                      ACF.mastery_score,
+            SELECT    C.category_name, C.numOfCard                   ,
+                      CASE WHEN C.numOfCard > 0 THEN 
+                        (SELECT array_agg(CCC.card_id) FROM CATEGORY_CARD_CONTAIN CCC WHERE CCC.category_id = p_category_id)
+                      ELSE ARRAY[]::INT[] END        AS card_ids                                                               ,
+                      ACF.mastery_score                                                                                        ,
                       C.date_created
             FROM      ACCOUNT_CATEGORY_FOLLOW ACF
-            JOIN CATEGORY C ON C.category_id = ACF.category_id
-            LEFT JOIN CATEGORY_CARD_CONTAIN CCC ON CCC.category_id = C.category_id
-            LEFT JOIN ACCOUNT_CARD_HAVE ACH ON ACH.card_id = CCC.card_id AND ACH.account_id = p_owner
+            JOIN CATEGORY C ON C.category_id = ACF.category_id 
             WHERE ACF.account_id = p_owner
-              AND ACF.category_id = p_category_id
             GROUP BY C.category_name, C.date_created, ACF.mastery_score, C.numOfCard;
           END
           $$ LANGUAGE plpgsql;

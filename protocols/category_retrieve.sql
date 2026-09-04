@@ -31,7 +31,10 @@ OR        REPLACE FUNCTION CATEGORY_RETRIEVE (p_account_id TYPE_ID, p_id TYPE_ID
 
             RETURN QUERY 
             SELECT C.category_name, C.numOfCard, 
-                  CASE WHEN (SELECT array_agg(FN_CARD_ID(CID.card_id)) FROM unnest(C.card_ids) as CID(card_id)) AS card_ids,
+                  CASE WHEN C.numOfCard >0 THEN 
+                    (SELECT array_agg(FN_CARD_ID(CID.card_id)) FROM unnest(C.card_ids) as CID(card_id)) 
+                    ELSE ARRAY[]::TYPE_ID[] 
+                    END AS card_ids                                                                                        ,
                   C.mastery                                                                                                ,
                   (FN_GET_GMT(C.date_created)).YEAR                                                                        ,
                   (FN_GET_GMT(C.date_created)).MONTH                                                                       ,

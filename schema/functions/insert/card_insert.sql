@@ -13,7 +13,6 @@ CREATE
 OR        REPLACE FUNCTION FN_CARD_INSERT (p_frontside INT, p_backside INT, p_creator INT) RETURNS INT AS $$
 DECLARE
     v_id INT;
-    v_res INT;
 BEGIN
     INSERT INTO CARD (frontside_id, backside_id, creator_id)
     VALUES (p_frontside, p_backside, p_creator)
@@ -29,10 +28,9 @@ BEGIN
 
     INSERT INTO ACCOUNT_CARD_HAVE (account_id, card_id)
     VALUES (p_creator, v_id)
-    ON CONFLICT (account_id, card_id) DO NOTHING
-    RETURNING card_id INTO v_res;
+    ON CONFLICT (account_id, card_id) DO NOTHING;
 
-    RETURN v_res;
+    RETURN v_id;
 END;
 $$ LANGUAGE plpgsql;
 

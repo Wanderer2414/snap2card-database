@@ -11,7 +11,7 @@ BEGIN
     SET mastery_score = sub.mastery
     FROM (
         SELECT F.account_id, F.category_id,
-               AVG(ACH.true_count::float / (3 * ACH.false_count)) AS mastery
+               AVG(ACH.mastery_score) AS mastery
         FROM ACCOUNT_CATEGORY_FOLLOW F
         JOIN new_rows NR ON NR.category_id = F.category_id
         LEFT JOIN CATEGORY_CARD_CONTAIN CCC ON CCC.category_id = F.category_id

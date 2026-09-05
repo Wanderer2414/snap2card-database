@@ -5,7 +5,7 @@ BEGIN
     SET mastery_score = CS.mastery
     FROM (
         SELECT F.account_id, F.category_id,
-               AVG(ACH.true_count::float / (3 * ACH.false_count)) AS mastery
+               AVG(ACH.mastery_score) AS mastery
         FROM (
             SELECT DISTINCT F.account_id, F.category_id
             FROM ACCOUNT_CATEGORY_FOLLOW F

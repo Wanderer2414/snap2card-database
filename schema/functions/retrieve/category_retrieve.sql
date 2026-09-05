@@ -15,7 +15,7 @@ OR        REPLACE FUNCTION FN_CATEGORY_RETRIEVE (p_owner INT, p_category_id INT)
                       ACF.mastery_score                                                                                        ,
                       C.date_created
             FROM      ACCOUNT_CATEGORY_FOLLOW ACF
-            JOIN CATEGORY C ON C.category_id = ACF.category_id 
+            JOIN CATEGORY C ON C.category_id = ACF.category_id  AND C.category_id = p_category_id
             WHERE ACF.account_id = p_owner
             GROUP BY C.category_name, C.date_created, ACF.mastery_score, C.numOfCard;
           END

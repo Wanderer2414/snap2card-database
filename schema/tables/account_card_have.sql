@@ -5,6 +5,7 @@ CREATE    TABLE ACCOUNT_CARD_HAVE (
           true_count INT NOT NULL DEFAULT 0 CHECK (true_count >= 0)  ,
           mastery_score FLOAT GENERATED ALWAYS AS
               (LEAST (true_count::float / (3 * false_count), 1)) STORED         ,
+          date_learned DATE                                                       ,
           date_created TIMESTAMPTZ DEFAULT NOW() NOT NULL            ,
           PRIMARY KEY (account_id, card_id)
           );

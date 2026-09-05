@@ -27,10 +27,6 @@ BEGIN
         RAISE EXCEPTION 'response body must not be null' USING ERRCODE = '50001';
     END IF;
 
-    IF length(p_endpoint) > 60 THEN
-        RAISE EXCEPTION 'endpoint must not exceed 60 characters' USING ERRCODE = '50002';
-    END IF;
-
     RETURN FN_REQUEST_LOG_INSERT(p_endpoint, p_header, p_body, p_reponse_header, p_reponse_body);
 END
 $$ LANGUAGE plpgsql;

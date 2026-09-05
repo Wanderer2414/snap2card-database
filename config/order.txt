@@ -59,6 +59,7 @@
 ./schema/functions/retrieve/exam_retrieve.sql
 ./schema/functions/retrieve/category_log_related.sql
 ./schema/functions/retrieve/daily_learning.sql
+./schema/functions/retrieve/review_log_detail_retrieve.sql
 
 ./schema/functions/insert/categorize.sql
 ./schema/functions/insert/exam_log_result.sql
@@ -109,3 +110,4 @@
 ./protocols/exam_complete.sql
 ./protocols/daily_learned_count.sql
 ./protocols/monthly_learned_count.sql
+./protocols/review_log_detail_retrieve.sql
